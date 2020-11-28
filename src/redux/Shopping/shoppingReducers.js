@@ -4,8 +4,13 @@ import data from '../../Components/data'
 const vegetables = data.products.vegetables.map((item) => {
   return { id: item.id, name: item.name, image: item.image, price: item.price }
 })
-
 const snacks = data.products.snacks.map((item) => {
+  return { id: item.id, name: item.name, image: item.image, price: item.price }
+})
+const drinks = data.products.drinks.map((item) => {
+  return { id: item.id, name: item.name, image: item.image, price: item.price }
+})
+const meatPoultry = data.products.meatPoultry.map((item) => {
   return { id: item.id, name: item.name, image: item.image, price: item.price }
 })
 
@@ -13,6 +18,8 @@ const INITIAL_STATE = {
   products: {
     vegetables,
     snacks,
+    drinks,
+    meatPoultry,
   },
   cart: [],
   currentItem: null,

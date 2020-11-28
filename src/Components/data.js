@@ -68,5 +68,39 @@ export default {
         price: '100',
       },
     ],
+    drinks: [
+      {
+        id: 'coke',
+        name: 'Coke',
+        image: potatoes,
+        price: '100',
+      },
+      {
+        id: 'sprite',
+        name: 'Sprite',
+        image: cabbage,
+        price: '100',
+      },
+      {
+        id: 'pepsi',
+        name: 'Pepsi',
+        image: garlic,
+        price: '100',
+      },
+    ],
+    meatPoultry: [
+      {
+        id: 'meat',
+        name: 'Meat',
+        image: lays,
+        price: '100',
+      },
+      {
+        id: 'chickenWings',
+        name: 'Chicken Wings',
+        image: laysHoney,
+        price: '100',
+      },
+    ],
   },
 }

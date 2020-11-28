@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'
 import classes from './Products.module.css'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' //connecting redux to component
+import { Button } from '@material-ui/core'
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +11,20 @@ const mapStateToProps = (state) => {
   }
 }
 
+const DISPLAY_ALLITEMS = 'allItems'
+const DISPLAY_VEGETABLES = 'vegetables'
+const DISPLAY_SNACKS = 'snacks'
+const DISPLAY_DRINKS = 'drinks'
+const DISPLAY_MEAT_POULTRY = 'meatAndPoultry'
+
 const Products = ({ products }) => {
+  const [items, setItems] = useState(DISPLAY_ALLITEMS)
+
+  const filterProducts = (category) => {
+    setItems(category)
+    console.log(category)
+  }
+
   const vegetableList = products.vegetables.map((product) => {
     return (
       <GroceryCard
@@ -33,6 +47,28 @@ const Products = ({ products }) => {
     )
   })
 
+  const drinksList = products.drinks.map((product) => {
+    return (
+      <GroceryCard
+        key={Math.random()}
+        name={product.name}
+        price={product.price}
+        image={product.image}
+      />
+    )
+  })
+
+  const meatPoultryList = products.meatPoultry.map((product) => {
+    return (
+      <GroceryCard
+        key={Math.random()}
+        name={product.name}
+        price={product.price}
+        image={product.image}
+      />
+    )
+  })
+
   return (
     <div>
       <NavigationBar />
@@ -44,15 +80,50 @@ const Products = ({ products }) => {
             marginBottom: '2rem',
           }}
         >
-          Vegetables
+          Products
         </h2>
         <div className={classes.Top}>
           <div className={classes.Categories}>
-            <div>Category 1</div>
-            <div>Category 2</div>
-            <div>Category 3</div>
-            <div>Category 4</div>
-            <div>Category 5</div>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                filterProducts(DISPLAY_ALLITEMS)
+              }}
+            >
+              All products
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                filterProducts(DISPLAY_VEGETABLES)
+              }}
+            >
+              Vegetables
+            </Button>
+            <Button
+              variant="outlined"
+              value="drinks"
+              onClick={() => {
+                filterProducts(DISPLAY_DRINKS)
+              }}
+            >
+              Drinks
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => filterProducts(DISPLAY_SNACKS)}
+            >
+              Snacks
+            </Button>
+            <Button
+              variant="outlined"
+              value="meatAndPoultry"
+              onClick={() => {
+                filterProducts(DISPLAY_MEAT_POULTRY)
+              }}
+            >
+              Meat and Poultry
+            </Button>
           </div>
           <div className={classes.Input}>
             Search:{' '}
@@ -67,17 +138,14 @@ const Products = ({ products }) => {
           </div>
         </div>
         <div className={classes.Cards}>
-          {vegetableList}, {snacksList}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            width: '100%',
-            marginTop: '1rem',
-          }}
-        >
-          {' '}
+          {items === DISPLAY_ALLITEMS && vegetableList}
+          {items === DISPLAY_ALLITEMS && snacksList}
+          {items === DISPLAY_ALLITEMS && drinksList}
+          {items === DISPLAY_ALLITEMS && meatPoultryList}
+          {items === DISPLAY_VEGETABLES && vegetableList}
+          {items === DISPLAY_SNACKS && snacksList}
+          {items === DISPLAY_DRINKS && drinksList}
+          {items === DISPLAY_MEAT_POULTRY && meatPoultryList}
         </div>
       </div>
     </div>
