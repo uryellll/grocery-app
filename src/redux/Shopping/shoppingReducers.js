@@ -28,14 +28,46 @@ const INITIAL_STATE = {
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
-      const item = state.products.find()
-      return {}
+      //finding item in the products array
+      const item = state.products.vegetables.find(
+        (prod) => prod.id === action.payload.id,
+      )
+      //checking if the item is in the cart already
+      const inCart = state.cart.find((item) =>
+        item.id === action.payload.id ? true : false,
+      )
+      return {
+        //copy the original state of the array
+        ...state,
+        cart: inCart
+          ? //if inCart is true
+            state.cart.map((item) =>
+              item.id === action.payload.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item,
+            )
+          : //if inCart is false
+            [...state.cart, { ...item, quantity: 1 }],
+      }
     case actionTypes.REMOVE_FROM_CART:
-      return {}
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
+      }
     case actionTypes.ADJUST_QUANTITY:
-      return {}
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: action.payload.quantity }
+            : item,
+        ),
+      }
     case actionTypes.REMOVE_FROM_CART:
-      return {}
+      return {
+        ...state,
+        currentItem: action.payload,
+      }
     default:
       return state
   }

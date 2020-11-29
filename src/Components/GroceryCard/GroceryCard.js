@@ -1,6 +1,9 @@
 import React from 'react'
 import classes from './GroceryCard.module.css'
 
+import { connect } from 'react-redux'
+import { addToCart } from '../../redux/Shopping/shoppingActions'
+
 const GroceryCard = (props) => {
   return (
     <div className={classes.ItemCard} onClick={props.click}>
@@ -16,12 +19,16 @@ const GroceryCard = (props) => {
           <p>{props.name}</p>
           <p>{props.price}</p>
         </div>
-        <button onClick={() => console.log('added to cart')}>
-          Add to cart
-        </button>
+        <button onClick={() => addToCart(props.id)}>Add to cart</button>
       </div>
     </div>
   )
 }
 
-export default GroceryCard
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(GroceryCard)

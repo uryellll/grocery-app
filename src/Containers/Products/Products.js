@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import GroceryCard from '../../Components/GroceryCard/GroceryCard'
+import GroceryCard, {
+  mapDispatchToProps,
+} from '../../Components/GroceryCard/GroceryCard'
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'
 import classes from './Products.module.css'
 import { connect } from 'react-redux' //connecting redux to component
 import { Button } from '@material-ui/core'
+
+import { addToCart } from '../../redux/Shopping/shoppingActions'
 
 const mapStateToProps = (state) => {
   return {
@@ -32,10 +36,10 @@ const Products = ({ products }) => {
         name={product.name}
         price={product.price}
         image={product.image}
+        id={product.id}
       />
     )
   })
-
   const snacksList = products.snacks.map((product) => {
     return (
       <GroceryCard
@@ -43,10 +47,10 @@ const Products = ({ products }) => {
         name={product.name}
         price={product.price}
         image={product.image}
+        id={product.id}
       />
     )
   })
-
   const drinksList = products.drinks.map((product) => {
     return (
       <GroceryCard
@@ -54,10 +58,10 @@ const Products = ({ products }) => {
         name={product.name}
         price={product.price}
         image={product.image}
+        id={product.id}
       />
     )
   })
-
   const meatPoultryList = products.meatPoultry.map((product) => {
     return (
       <GroceryCard
@@ -65,6 +69,7 @@ const Products = ({ products }) => {
         name={product.name}
         price={product.price}
         image={product.image}
+        id={product.id}
       />
     )
   })

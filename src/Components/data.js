@@ -12,7 +12,7 @@ export default {
   products: {
     vegetables: [
       {
-        id: 'potato',
+        id: 'potatoes',
         name: 'Potatoes',
         image: potatoes,
         price: '100',
@@ -62,7 +62,7 @@ export default {
         price: '100',
       },
       {
-        id: 'laysLowFat',
+        id: 'laysLowfat',
         name: 'Lays Lowfat',
         image: laysLowfat,
         price: '100',
