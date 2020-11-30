@@ -43,7 +43,9 @@ const landing = ({ products }) => {
             delivered at your doorstep.
           </h1>
           <Link to="/products">
-            <Button className={classes.bannerBtn}>Shop now</Button>
+            <Button variant="contained" className={classes.bannerBtn}>
+              Shop now
+            </Button>
           </Link>
         </div>
       </div>
