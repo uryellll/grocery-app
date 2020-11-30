@@ -3,35 +3,29 @@ import classes from './GroceryCard.module.css'
 
 import { connect } from 'react-redux'
 import { addToCart } from '../../redux/Shopping/shoppingActions'
-import { removeFromCart } from '../../redux/Shopping/shoppingActions'
 
-const GroceryCard = (props) => {
+const GroceryCard = ({ productData, addToCart }) => {
   return (
-    <div className={classes.ItemCard} onClick={props.click}>
+    <div className={classes.ItemCard}>
       <div className={classes.ProductImg}>
         <img
-          src={props.image}
-          alt={props.name}
+          src={productData.image}
+          alt={productData.name}
           className={classes.ProductImage}
         />
       </div>
       <div className={classes.ProductDetails}>
         <div>
-          <p>{props.name}</p>
-          <p>{props.price}</p>
+          <p>{productData.name}</p>
+          <p>{productData.price}</p>
         </div>
         <button
           onClick={() => {
-            addToCart(props.id)
+            addToCart(productData.id)
           }}
         >
           Add to cart
         </button>
-        <button
-          onClick={() => {
-            removeFromCart(props.id)
-          }}
-        ></button>
       </div>
     </div>
   )

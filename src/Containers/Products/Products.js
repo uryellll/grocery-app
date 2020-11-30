@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import GroceryCard, {
-  mapDispatchToProps,
-} from '../../Components/GroceryCard/GroceryCard'
+import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'
 import classes from './Products.module.css'
 import { connect } from 'react-redux' //connecting redux to component
@@ -28,48 +26,16 @@ const Products = ({ products }) => {
   }
 
   const vegetableList = products.vegetables.map((product) => {
-    return (
-      <GroceryCard
-        key={Math.random()}
-        name={product.name}
-        price={product.price}
-        image={product.image}
-        id={product.id}
-      />
-    )
+    return <GroceryCard key={Math.random()} productData={product} />
   })
   const snacksList = products.snacks.map((product) => {
-    return (
-      <GroceryCard
-        key={Math.random()}
-        name={product.name}
-        price={product.price}
-        image={product.image}
-        id={product.id}
-      />
-    )
+    return <GroceryCard key={Math.random()} productData={product} />
   })
   const drinksList = products.drinks.map((product) => {
-    return (
-      <GroceryCard
-        key={Math.random()}
-        name={product.name}
-        price={product.price}
-        image={product.image}
-        id={product.id}
-      />
-    )
+    return <GroceryCard key={Math.random()} productData={product} />
   })
   const meatPoultryList = products.meatPoultry.map((product) => {
-    return (
-      <GroceryCard
-        key={Math.random()}
-        name={product.name}
-        price={product.price}
-        image={product.image}
-        id={product.id}
-      />
-    )
+    return <GroceryCard key={Math.random()} productData={product} />
   })
 
   return (
