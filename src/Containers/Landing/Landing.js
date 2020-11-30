@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../../Components/Footer/Footer'
 import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import { connect } from 'react-redux'
+import { Button } from '@material-ui/core'
 
 const mapStateToProps = (state) => {
   return {
@@ -42,11 +43,8 @@ const landing = ({ products }) => {
             delivered at your doorstep.
           </h1>
           <Link to="/products">
-            <button className={classes.bannerBtn} type="button">
-              Shop now
-            </button>
+            <Button className={classes.bannerBtn}>Shop now</Button>
           </Link>
-          <xml version="1.0" standalone="no" />
         </div>
       </div>
       <div className={classes.content}>
@@ -59,6 +57,7 @@ const landing = ({ products }) => {
                 name={products.name}
                 price={products.price}
                 image={products.image}
+                id={products.id}
               />
             ))}
           </div>
@@ -72,6 +71,7 @@ const landing = ({ products }) => {
                 name={products.name}
                 price={products.price}
                 image={products.image}
+                id={products.id}
               />
             ))}
           </div>

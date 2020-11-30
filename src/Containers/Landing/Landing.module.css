@@ -66,20 +66,19 @@
 }
 
 .bannerBtn {
-  height: 10vh;
-  width: auto;
   border: none;
   border-radius: 5px;
   box-shadow: -1px 8px 6px -2px rgba(0, 0, 0, 0.33);
-  background-color: #ff9642;
+  background: #ff9642;
   color: #000000;
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  height: 10vh;
+  width: 25vh;
   padding: 10px 10px;
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
-.bannerBtn:hover {
-  background: #000000;
-  cursor: pointer;
+.MuiButton-root {
+  background: #ff9642;
 }
 
 .contentContainer > img {

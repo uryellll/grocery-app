@@ -7,8 +7,6 @@ import classes from './Products.module.css'
 import { connect } from 'react-redux' //connecting redux to component
 import { Button } from '@material-ui/core'
 
-import { addToCart } from '../../redux/Shopping/shoppingActions'
-
 const mapStateToProps = (state) => {
   return {
     products: state.shop.products,

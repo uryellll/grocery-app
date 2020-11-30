@@ -3,6 +3,7 @@ import classes from './GroceryCard.module.css'
 
 import { connect } from 'react-redux'
 import { addToCart } from '../../redux/Shopping/shoppingActions'
+import { removeFromCart } from '../../redux/Shopping/shoppingActions'
 
 const GroceryCard = (props) => {
   return (
@@ -19,7 +20,18 @@ const GroceryCard = (props) => {
           <p>{props.name}</p>
           <p>{props.price}</p>
         </div>
-        <button onClick={() => addToCart(props.id)}>Add to cart</button>
+        <button
+          onClick={() => {
+            addToCart(props.id)
+          }}
+        >
+          Add to cart
+        </button>
+        <button
+          onClick={() => {
+            removeFromCart(props.id)
+          }}
+        ></button>
       </div>
     </div>
   )
