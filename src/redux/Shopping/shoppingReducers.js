@@ -36,6 +36,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       const inCart = state.cart.find((item) =>
         item.id === action.payload.id ? true : false,
       )
+      console.log(item)
       return {
         //copy the original state of the array
         ...state,

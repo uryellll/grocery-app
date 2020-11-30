@@ -7,6 +7,8 @@ import tomatoes from '../Assets/vegetables/tomatoes.png'
 import lays from '../Assets/chips/chips-lays.png'
 import laysLowfat from '../Assets/chips/chips-lays-lowfat.png'
 import laysHoney from '../Assets/chips/chips-lays-honeybbq.png'
+import coke from '../Assets/drinks/coke.png'
+import pepsi from '../Assets/drinks/pepsi.png'
 
 export default {
   products: {
@@ -72,19 +74,13 @@ export default {
       {
         id: 'coke',
         name: 'Coke',
-        image: potatoes,
-        price: '100',
-      },
-      {
-        id: 'sprite',
-        name: 'Sprite',
-        image: cabbage,
+        image: coke,
         price: '100',
       },
       {
         id: 'pepsi',
         name: 'Pepsi',
-        image: garlic,
+        image: pepsi,
         price: '100',
       },
     ],
