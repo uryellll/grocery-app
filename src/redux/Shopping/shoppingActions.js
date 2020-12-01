@@ -30,6 +30,16 @@ export const adjustQuantity = (itemID, value) => {
   }
 }
 
+export const reduceQuantity = (itemID, value) => {
+  return {
+    type: actionTypes.REDUCE_QUANTITY,
+    payload: {
+      id: itemID,
+      quantity: value,
+    },
+  }
+}
+
 export const loadCurrentItem = (item) => {
   return {
     type: actionTypes.LOAD_CURRENT_ITEM,

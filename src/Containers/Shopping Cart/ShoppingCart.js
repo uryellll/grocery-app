@@ -1,13 +1,8 @@
 import React from 'react'
 import classes from './shoppingCart.module.css'
-import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import { connect } from 'react-redux'
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'
-
-import {
-  removeFromCart,
-  adjustQuantity,
-} from '../../redux/Shopping/shoppingActions'
+import CartItems from '../../Components/ShoppingCart/CartItems'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,22 +12,16 @@ const mapStateToProps = (state) => {
 
 const ShoppingCart = ({ cart }) => {
   const shoppingCartList = cart.map((cartList) => {
-    return {}
+    return <CartItems key={Math.random()} cartItemData={cartList} />
   })
 
   return (
     <>
       <NavigationBar />
-      <div className={classes.cartContainer}></div>
+      <h1>Shopping Cart</h1>
+      <div className={classes.cartContainer}>{shoppingCartList}</div>
     </>
   )
-}
-
-export const mapDispatchToProps = (dispatch) => {
-  return {
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-    adjustQuantity: (id) => dispatch(adjustQuantity(id)),
-  }
 }
 
 export default connect(mapStateToProps)(ShoppingCart)
