@@ -1,6 +1,6 @@
 .ItemCard {
   height: 300px;
-  width: 200px;
+  min-width: 250px;
   margin: 10px 10px;
   border-radius: 7px;
   background-color: #fff8cd;
@@ -14,7 +14,7 @@
 
 .ProductImgContainer {
   width: 10rem;
-  height: 13rem;
+  height: 12rem;
   position: relative;
   display: inline-block;
   margin: 0;
@@ -60,7 +60,7 @@
   background: #ffff;
   color: #000000;
   height: 30rem;
-  width: 40rem;
+  width: 50rem;
   padding: 30px;
   display: flex;
   align-items: center;
@@ -72,8 +72,8 @@
   justify-content: center;
   align-items: center;
   display: inline-block;
-  height: 20rem;
-  width: 30rem;
+  height: 60%;
+  width: 50%;
   margin-right: 20px;
   position: relative;
 }

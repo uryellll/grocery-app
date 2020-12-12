@@ -58,7 +58,7 @@ const landing = ({ products }) => {
             ))}
           </div>
         </div>
-        <div className={classes.popularItems}>
+        <div className={classes.discountedItems}>
           <h2>Discounted Products</h2>
           <div className={classes.itemGrid}>
             {products.snacks.map((products) => (

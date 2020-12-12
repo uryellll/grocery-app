@@ -104,9 +104,10 @@
 .itemGrid {
   display: flex;
   flex-direction: row;
-  padding: 10px 0px;
+  padding: 0px 0px;
   position: relative;
   height: 350px;
+  width: auto;
   overflow-x: auto;
   overflow-y: hidden;
 }

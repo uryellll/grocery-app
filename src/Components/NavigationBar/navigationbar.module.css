@@ -2,13 +2,18 @@
   color: #000000;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
 /* Navigation Bar Primary */
 
 .navbarPrimary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 60px;
   padding: 0 25px;
   position: relative;
   background-color: #000000;
@@ -35,6 +40,7 @@
   position: absolute;
   color: #ffe05d;
   left: 10px;
+  top: 20%;
 }
 
 .searchBar {
@@ -61,7 +67,7 @@
 
 .navbarSecondary {
   background-color: #ffe05d;
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -77,4 +83,10 @@
 li {
   font-size: 14px;
   list-style-type: none;
+}
+
+.navbarLinks a:hover {
+  background: #000000;
+  color: #ffe05d;
+  padding: 10px;
 }

@@ -28,10 +28,18 @@ function NavigationBar() {
       </div>
       <div className={classes.navbarSecondary}>
         <ul className={classes.navbarLinks}>
-          <li>Products</li>
-          <li>by Category</li>
-          <li>Popular</li>
-          <li>Sale</li>
+          <Link to="/products">
+            <li>Products</li>
+          </Link>
+          <Link to="/products">
+            <li>by Category</li>
+          </Link>
+          <Link to="/products">
+            <li>Popular</li>
+          </Link>
+          <Link to="/products">
+            <li>Sale</li>
+          </Link>
         </ul>
       </div>
     </div>
