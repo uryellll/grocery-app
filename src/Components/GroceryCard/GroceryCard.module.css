@@ -60,7 +60,7 @@
   background: #ffff;
   color: #000000;
   height: 30rem;
-  width: 50rem;
+  width: 40rem;
   padding: 30px;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
   align-items: center;
   display: inline-block;
   height: 20rem;
-  width: 25rem;
+  width: 30rem;
   margin-right: 20px;
   position: relative;
 }
