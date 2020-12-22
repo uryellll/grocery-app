@@ -31,11 +31,6 @@ const landing = ({ products }) => {
           <h1>
             <Link to="/">LOGO</Link>
           </h1>
-
-          <div>
-            <input type="text" placeholder="What do you need?" />
-            <button type="submit">Search</button>
-          </div>
         </div>
         <div className={classes.slogan}>
           <h1>
