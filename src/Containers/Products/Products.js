@@ -11,32 +11,33 @@ const mapStateToProps = (state) => {
   }
 }
 
-const DISPLAY_ALLITEMS = 'allItems'
-const DISPLAY_VEGETABLES = 'vegetables'
-const DISPLAY_SNACKS = 'snacks'
-const DISPLAY_DRINKS = 'drinks'
-const DISPLAY_MEAT_POULTRY = 'meatAndPoultry'
+const DISPLAY_ALLITEMS = ''
+const DISPLAY_VEGETABLES = 'vegetable'
+const DISPLAY_SNACKS = 'snack'
+const DISPLAY_DRINKS = 'drink'
+const DISPLAY_MEAT_POULTRY = 'meatPoultry'
 
 const Products = ({ products }) => {
-  const [items, setItems] = useState(DISPLAY_ALLITEMS)
+  const [category, setCategory] = useState(DISPLAY_ALLITEMS)
 
   const filterProducts = (category) => {
-    setItems(category)
+    setCategory(category)
     console.log(category)
   }
 
-  const vegetableList = products.vegetables.map((product) => {
+  const filteredProducts = products.filter((product) => {
+    return product.type === category
+  })
+
+  const filteredList = filteredProducts.map((product) => {
     return <GroceryCard key={Math.random()} productData={product} />
   })
-  const snacksList = products.snacks.map((product) => {
+
+  const unfilteredList = products.map((product) => {
     return <GroceryCard key={Math.random()} productData={product} />
   })
-  const drinksList = products.drinks.map((product) => {
-    return <GroceryCard key={Math.random()} productData={product} />
-  })
-  const meatPoultryList = products.meatPoultry.map((product) => {
-    return <GroceryCard key={Math.random()} productData={product} />
-  })
+
+  console.log(filteredList)
 
   return (
     <div>
@@ -107,14 +108,11 @@ const Products = ({ products }) => {
           </div>
         </div>
         <div className={classes.Cards}>
-          {items === DISPLAY_ALLITEMS && vegetableList}
-          {items === DISPLAY_ALLITEMS && snacksList}
-          {items === DISPLAY_ALLITEMS && drinksList}
-          {items === DISPLAY_ALLITEMS && meatPoultryList}
-          {items === DISPLAY_VEGETABLES && vegetableList}
-          {items === DISPLAY_SNACKS && snacksList}
-          {items === DISPLAY_DRINKS && drinksList}
-          {items === DISPLAY_MEAT_POULTRY && meatPoultryList}
+          {category === DISPLAY_ALLITEMS && unfilteredList}
+          {category === DISPLAY_VEGETABLES && filteredList}
+          {category === DISPLAY_SNACKS && filteredList}
+          {category === DISPLAY_DRINKS && filteredList}
+          {category === DISPLAY_MEAT_POULTRY && filteredList}
         </div>
       </div>
     </div>

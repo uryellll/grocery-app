@@ -53,7 +53,7 @@ const landing = ({ products }) => {
         <div className={classes.popularItems}>
           <h2>Popular Products</h2>
           <div className={classes.itemGrid}>
-            {products.vegetables.map((products) => (
+            {products.map((products) => (
               <GroceryCard key={Math.random()} productData={products} />
             ))}
           </div>
@@ -61,7 +61,7 @@ const landing = ({ products }) => {
         <div className={classes.discountedItems}>
           <h2>Discounted Products</h2>
           <div className={classes.itemGrid}>
-            {products.snacks.map((products) => (
+            {products.map((products) => (
               <GroceryCard key={Math.random()} productData={products} />
             ))}
           </div>

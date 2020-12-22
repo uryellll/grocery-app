@@ -11,92 +11,97 @@ import coke from '../Assets/drinks/coke.png'
 import pepsi from '../Assets/drinks/pepsi.png'
 
 export default {
-  products: {
-    vegetables: [
-      {
-        id: 'potatoes',
-        name: 'Potatoes',
-        image: potatoes,
-        price: '100',
-      },
-      {
-        id: 'cabbage',
-        name: 'Cabbage',
-        image: cabbage,
-        price: '100',
-      },
-      {
-        id: 'garlic',
-        name: 'Garlic',
-        image: garlic,
-        price: '100',
-      },
-      {
-        id: 'redOnion',
-        name: 'Red Onion',
-        image: onionRed,
-        price: '100',
-      },
-      {
-        id: 'onion',
-        name: 'Onion',
-        image: onion,
-        price: '100',
-      },
-      {
-        id: 'tomatoes',
-        name: 'Tomatoes',
-        image: tomatoes,
-        price: '100',
-      },
-    ],
-    snacks: [
-      {
-        id: 'lays',
-        name: 'Lays',
-        image: lays,
-        price: '100',
-      },
-      {
-        id: 'laysHoneyBbq',
-        name: 'Lays HoneyBbq',
-        image: laysHoney,
-        price: '100',
-      },
-      {
-        id: 'laysLowfat',
-        name: 'Lays Lowfat',
-        image: laysLowfat,
-        price: '100',
-      },
-    ],
-    drinks: [
-      {
-        id: 'coke',
-        name: 'Coke',
-        image: coke,
-        price: '100',
-      },
-      {
-        id: 'pepsi',
-        name: 'Pepsi',
-        image: pepsi,
-        price: '100',
-      },
-    ],
-    meatPoultry: [
-      {
-        id: 'meat',
-        name: 'Meat',
-        image: lays,
-        price: '100',
-      },
-      {
-        id: 'chickenWings',
-        name: 'Chicken Wings',
-        image: laysHoney,
-        price: '100',
-      },
-    ],
-  },
+  products: [
+    {
+      id: 'potatoes',
+      name: 'Potatoes',
+      image: potatoes,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'cabbage',
+      name: 'Cabbage',
+      image: cabbage,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'garlic',
+      name: 'Garlic',
+      image: garlic,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'redOnion',
+      name: 'Red Onion',
+      image: onionRed,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'onion',
+      name: 'Onion',
+      image: onion,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'tomatoes',
+      name: 'Tomatoes',
+      image: tomatoes,
+      price: '100',
+      type: 'vegetable',
+    },
+    {
+      id: 'lays',
+      name: 'Lays',
+      image: lays,
+      price: '100',
+      type: 'snack',
+    },
+    {
+      id: 'laysHoneyBbq',
+      name: 'Lays HoneyBbq',
+      image: laysHoney,
+      price: '100',
+      type: 'snack',
+    },
+    {
+      id: 'laysLowfat',
+      name: 'Lays Lowfat',
+      image: laysLowfat,
+      price: '100',
+      type: 'snack',
+    },
+    {
+      id: 'coke',
+      name: 'Coke',
+      image: coke,
+      price: '100',
+      type: 'drink',
+    },
+    {
+      id: 'pepsi',
+      name: 'Pepsi',
+      image: pepsi,
+      price: '100',
+      type: 'drink',
+    },
+    {
+      id: 'meat',
+      name: 'Meat',
+      image: lays,
+      price: '100',
+      type: 'meatPoultry',
+    },
+    {
+      id: 'chickenWings',
+      name: 'Chicken Wings',
+      image: laysHoney,
+      price: '100',
+      type: 'meatPoultry',
+    },
+  ],
 }
