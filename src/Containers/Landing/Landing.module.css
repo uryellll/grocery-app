@@ -37,17 +37,6 @@
   border-radius: 5px;
 }
 
-.topBar > div > input {
-  height: 30px;
-  width: 300px;
-  padding: 0 5px;
-}
-
-.topBar > div > button,
-.topBar > div > input {
-  border: none;
-}
-
 .bannerSvg {
   height: 70vh;
   position: absolute;

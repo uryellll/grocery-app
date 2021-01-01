@@ -1,19 +1,46 @@
 .container {
-  height: 100vh;
+  height: auto;
   font-size: 25px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   text-align: center;
-  margin: 15px 25px;
+  margin: 2rem;
   padding: 25px;
 }
 
+.container h1 {
+  margin-bottom: 5rem;
+}
+
 details {
-  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  width: 80%;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  background: #e2dddd;
+  border-radius: 0.3rem;
 }
 
 details > p {
   font-size: 18px;
+  height: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
