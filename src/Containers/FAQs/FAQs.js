@@ -10,7 +10,10 @@ function FAQs() {
       <div className={classes.container}>
         <h1>Frequently Asked Questions</h1>
         <details>
-          <summary>Question 1</summary>
+          <summary>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
+            eos!
+          </summary>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
             dolorum eius ducimus quisquam corporis qui quae velit voluptatibus
@@ -18,7 +21,7 @@ function FAQs() {
           </p>
         </details>
         <details>
-          <summary>Question 2</summary>
+          <summary>Lorem ipsum dolor sit amet?</summary>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
             officia impedit ipsum, nam iusto ex consectetur, minima magnam ea
@@ -28,21 +31,24 @@ function FAQs() {
           </p>
         </details>
         <details>
-          <summary>Question 3</summary>
+          <summary>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
+            porro?
+          </summary>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
             quis!
           </p>
         </details>
         <details>
-          <summary>Question 4</summary>
+          <summary>Lorem ipsum dolor?</summary>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
             quis!
           </p>
         </details>
         <details>
-          <summary>Question 5</summary>
+          <summary>Lorem ipsum dolor sit amet consectetur adipisicing?</summary>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
             quis!
