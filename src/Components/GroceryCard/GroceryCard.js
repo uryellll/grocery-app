@@ -56,7 +56,7 @@ const GroceryCard = ({ productData, addToCart }) => {
       <div className={classes.ProductDetails}>
         <div>
           <p>{productData.name}</p>
-          <p>{productData.price}</p>
+          <p>P {productData.price}</p>
         </div>
         <button
           onClick={() => {

@@ -1,6 +1,6 @@
 .ItemCard {
-  height: 300px;
-  min-width: 250px;
+  height: 20rem;
+  width: 5rem;
   margin: 10px 10px;
   border-radius: 7px;
   background-color: #fff8cd;
@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 2rem;
   position: relative;
 }
 
@@ -32,17 +32,24 @@
 
 .ProductDetails {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   margin-top: 10px;
+}
+
+.ProductDetails div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
 .ProductDetails > button {
   border: none;
   background-color: #ff9642;
   border-radius: 5px;
-  width: 70px;
-  height: 30px;
+  width: auto;
+  height: 2rem;
   font-size: 10px;
 }
 
