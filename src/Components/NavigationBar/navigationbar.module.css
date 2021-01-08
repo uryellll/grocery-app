@@ -29,18 +29,19 @@ a {
 
 .search {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  height: 40px;
-  width: 350px;
-  position: relative;
+  height: 2rem;
+  width: 25rem;
 }
 
-.AddShoppingCartSharpIcon {
-  position: absolute;
+.search input {
+  border-radius: 5px;
+}
+
+.ShoppingCartSharpIcon {
   color: #ffe05d;
-  left: 10px;
-  top: 20%;
+  font-size: 2rem;
 }
 
 .searchBar {
@@ -53,8 +54,7 @@ a {
 .searchBtn {
   height: 30px;
   width: 60px;
-  position: absolute;
-  right: 0px;
+
   border-radius: 5px;
 }
 
@@ -83,10 +83,13 @@ a {
 li {
   font-size: 14px;
   list-style-type: none;
+  padding: 0.5rem;
+  height: auto;
+  width: auto;
 }
 
 .navbarLinks a:hover {
   background: #000000;
   color: #ffe05d;
-  padding: 10px;
+  border-radius: 0.5rem;
 }

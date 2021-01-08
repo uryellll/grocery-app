@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './navigationbar.module.css'
-import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp'
+import { BiShoppingBag } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 function NavigationBar() {
@@ -11,6 +11,9 @@ function NavigationBar() {
           <Link to="/">logo</Link>
         </h1>
         <div className={classes.search}>
+          <Link to="/shopping-cart">
+            <BiShoppingBag className={classes.ShoppingCartSharpIcon} />
+          </Link>
           <input
             type="text"
             className={classes.searchBar}
@@ -19,11 +22,6 @@ function NavigationBar() {
           <button type="submit" className={classes.searchBtn}>
             Search
           </button>
-          <Link to="/shopping-cart">
-            <AddShoppingCartSharpIcon
-              className={classes.AddShoppingCartSharpIcon}
-            />
-          </Link>
         </div>
       </div>
       <div className={classes.navbarSecondary}>
