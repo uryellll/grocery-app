@@ -1,16 +1,16 @@
 .container {
   display: flex;
-  justify-content: space-around;
-  width: 30rem;
-  margin: 3rem;
-  padding: 10px 20px;
-  border: 1px dashed red;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 1rem;
 }
 
 .cartItemImage {
   height: 8rem;
-  width: 10rem;
+  width: 8rem;
   position: relative;
+  border: 1px solid blue;
 }
 
 img {
@@ -20,14 +20,38 @@ img {
   display: inline-block;
 }
 
-.details {
+.cartItemDetails {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 15rem;
+  justify-content: space-between;
+  width: 18rem;
+  padding: 0rem 1rem;
+  border: 1px solid blue;
 }
 
 .adjQuantity {
   display: flex;
+  width: 7rem;
   justify-content: space-between;
+  border: 1px solid blue;
+}
+
+.adjQuantity button {
+  height: 2rem;
+  width: 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  border: 1px solid blue;
+}
+
+.SubTotal {
+  width: 7rem;
+  border: 1px solid blue;
+  text-align: center;
+}
+
+.CartRemoveBtn {
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.3rem;
+  border: none;
 }

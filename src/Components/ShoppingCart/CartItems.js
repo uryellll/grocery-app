@@ -6,7 +6,6 @@ import {
   reduceQuantity,
 } from '../../redux/Shopping/shoppingActions'
 import { connect } from 'react-redux'
-import { Button } from '@material-ui/core'
 
 const CartItems = ({
   cartItemData,
@@ -19,35 +18,38 @@ const CartItems = ({
       <div className={classes.cartItemImage}>
         <img src={cartItemData.image} alt={cartItemData.name} />
       </div>
-      <div className={classes.details}>
+      <div className={classes.cartItemDetails}>
         <p>{cartItemData.name}</p>
         <p>{cartItemData.price}</p>
-        <div className={classes.adjQuantity}>
-          <button
-            onClick={() => {
-              adjustQuantity(cartItemData.id)
-            }}
-          >
-            +
-          </button>
-          <p>{cartItemData.quantity}</p>
-          <button
-            onClick={() => {
-              reduceQuantity(cartItemData.id)
-            }}
-          >
-            -
-          </button>
-        </div>
-        <Button
-          variant="contained"
+      </div>
+      <div className={classes.adjQuantity}>
+        <button
           onClick={() => {
-            removeFromCart(cartItemData.id)
+            adjustQuantity(cartItemData.id)
           }}
         >
-          Remove
-        </Button>
+          +
+        </button>
+        <p>{cartItemData.quantity}</p>
+        <button
+          onClick={() => {
+            reduceQuantity(cartItemData.id)
+          }}
+        >
+          -
+        </button>
       </div>
+      <div className={classes.SubTotal}>
+        <p>{cartItemData.quantity * cartItemData.price}</p>
+      </div>
+      <button
+        className={classes.CartRemoveBtn}
+        onClick={() => {
+          removeFromCart(cartItemData.id)
+        }}
+      >
+        Remove
+      </button>
     </div>
   )
 }

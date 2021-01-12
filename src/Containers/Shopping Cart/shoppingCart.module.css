@@ -1,6 +1,69 @@
-.cartContainer {
-  height: 100vh;
+.CartContainer {
+  display: flex;
+  width: 100vw;
+  justify-content: flex-start;
+  border: 1px red solid;
+  padding: 1rem;
+}
+
+.CartInfo,
+.CartItems {
   display: flex;
   flex-direction: column;
+  padding: 0.5rem;
+  border: 1px solid red;
+}
+
+.CartInfo {
+  align-items: left;
+  width: 20vw;
+  border: 1px solid blue;
+}
+
+.CartInfoo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CartItems {
+  width: 80vw;
+  flex-wrap: wrap;
+  border: 1px solid blue;
+}
+
+.CartTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 1.5rem;
+  border: 1px solid blue;
+}
+
+.CartImageTitle,
+.CartProductQuantity,
+.CartRemove {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  border: 1px solid blue;
+}
+
+.CartImageTitle {
+  width: 8rem;
+  border: 1px solid blue;
+}
+
+.CartProductName {
+  display: flex;
+  justify-content: space-between;
+  width: 18rem;
+  border: 1px solid blue;
+}
+
+.CartProductQuantity {
+  width: 7rem;
+}
+
+.CartRemove {
+  width: 5rem;
+  border: 1px solid blue;
 }
