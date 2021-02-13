@@ -1,95 +1,159 @@
-.navbarContainer {
-  color: #000000;
-}
+/* 
+#75cfb8
+#bbdfc8
+#f0e5d8
+#ffc478 
+*/
 
-a {
-  text-decoration: none;
-  color: #000000;
-}
-
-/* Navigation Bar Primary */
-
-.navbarPrimary {
+.navbarWrapper {
+  background: #75cfb8;
+  height: 3rem;
+  width: 100%;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
-  padding: 0 25px;
+  position: fixed;
+  z-index: 5;
+}
+
+.navbarWrapper a {
+  text-decoration: none;
+  color: #75cfb8;
+}
+
+.navLinks {
+  display: none;
+}
+
+.navLinks a {
+  color: #fff;
+}
+
+.navLinks a:hover {
+  border-bottom: 2px solid #ffc478;
+}
+
+.linksWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.linksWrapper svg:hover {
+  cursor: pointer;
+  color: #ffc478 !important;
+}
+
+.burgerMenuWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
   position: relative;
-  background-color: #000000;
 }
 
-.navbarPrimary > h1,
-.navbarPrimary a {
-  font-family: 'Montserrat';
-  text-transform: uppercase;
-  color: #ffe05d;
-  text-decoration: none;
+.burgerMenuWrapper:hover {
+  cursor: pointer;
 }
 
-.search {
+.burgerMenu,
+.burgerMenu::before,
+.burgerMenu::after {
+  background-color: #fff;
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.burgerMenu {
+  transition: background-color ease-in-out 0.3s;
+}
+
+.burgerMenu::before,
+.burgerMenu::after {
+  content: '';
+  transition: transform ease-in-out 0.3s;
+  position: absolute;
+}
+
+.burgerMenu::before {
+  transform: translateX(-0.8rem);
+}
+
+.burgerMenu::after {
+  transform: translateX(0.8rem);
+}
+
+.burgerMenuOpen,
+.burgerMenuOpen::before,
+.burgerMenuOpen::after {
+  transition: transform ease-in-out 0.3s;
+  background-color: #fff;
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.burgerMenuOpen::before,
+.burgerMenuOpen::after {
+  content: '';
+  position: absolute;
+}
+
+.burgerMenuOpen::before {
+  transform: translateY(-0.8rem);
+}
+
+.burgerMenuOpen::after {
+  transform: translateY(0.8rem);
+}
+
+.hideBurgerMenu,
+.openBurgerMenu {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  height: 2rem;
-  width: 25rem;
+  gap: 4rem;
 }
 
-.search input {
-  border-radius: 5px;
-}
-
-.ShoppingCartSharpIcon {
-  color: #ffe05d;
-  font-size: 2rem;
-}
-
-.searchBar {
-  height: 30px;
+.hideBurgerMenu,
+.openBurgerMenu {
+  background: #fff;
+  padding: 4rem 0;
+  height: 100vh;
   width: 300px;
-  padding: 0 5px;
-  font-family: 'Open Sans';
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
-.searchBtn {
-  height: 30px;
-  width: 60px;
-
-  border-radius: 5px;
+.hideBurgerMenu {
+  transition: transform ease-in-out 0.4s;
+  transform: translateX(300px) translateY(3rem);
 }
 
-.search input,
-.search button {
-  border: none;
+.openBurgerMenu {
+  transition: transform ease-in-out 0.4s;
+  transform: translateX(0px) translateY(3rem);
 }
 
-/* Navigation Bar Secondary */
+@media only screen and (min-width: 760px) {
+  .burgerMenuWrapper {
+    display: none;
+  }
 
-.navbarSecondary {
-  background-color: #ffe05d;
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  .navLinks {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
 }
 
-.navbarLinks {
-  display: flex;
-  justify-content: space-between;
-  width: 25%;
-  padding: 0 25px;
-}
-
-li {
-  font-size: 14px;
-  list-style-type: none;
-  padding: 0.5rem;
-  height: auto;
-  width: auto;
-}
-
-.navbarLinks a:hover {
-  background: #000000;
-  color: #ffe05d;
-  border-radius: 0.5rem;
+@media only screen and (min-width: 1024px) {
+  .burgerMenuWrapper {
+    display: none;
+  }
 }

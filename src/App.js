@@ -7,10 +7,12 @@ import About from './Containers/About/About'
 import Careers from './Containers/Careers/Careers'
 import FAQs from './Containers/FAQs/FAQs'
 import ShoppingCart from './Containers/Shopping Cart/ShoppingCart'
+import NavigationBar from './Components/NavigationBar/NavigationBar'
 
 const App = () => {
   return (
     <div>
+      <NavigationBar />
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/products" component={Products} />

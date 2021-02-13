@@ -20,8 +20,9 @@ const DISPLAY_MEAT_POULTRY = 'meatPoultry'
 const Products = ({ products }) => {
   const [category, setCategory] = useState(DISPLAY_ALLITEMS)
 
-  const filterProducts = (category) => {
-    setCategory(category)
+  const filterProducts = (e) => {
+    e.preventDefault()
+    setCategory(e.target.value)
     console.log(category)
   }
 
@@ -40,80 +41,59 @@ const Products = ({ products }) => {
   console.log(filteredList)
 
   return (
-    <div>
-      <NavigationBar />
-      <div className={classes.Wrapper}>
-        <h2
-          style={{
-            fontSize: '50px',
-            fontWeight: '400',
-            marginBottom: '2rem',
-          }}
-        >
-          Products
-        </h2>
-        <div className={classes.Top}>
-          <div className={classes.Categories}>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                filterProducts(DISPLAY_ALLITEMS)
-              }}
-            >
-              All products
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => {
-                filterProducts(DISPLAY_VEGETABLES)
-              }}
-            >
-              Vegetables
-            </Button>
-            <Button
-              variant="outlined"
-              value="drinks"
-              onClick={() => {
-                filterProducts(DISPLAY_DRINKS)
-              }}
-            >
-              Drinks
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => filterProducts(DISPLAY_SNACKS)}
-            >
-              Snacks
-            </Button>
-            <Button
-              variant="outlined"
-              value="meatAndPoultry"
-              onClick={() => {
-                filterProducts(DISPLAY_MEAT_POULTRY)
-              }}
-            >
-              Meat and Poultry
-            </Button>
+    <div className={classes.wrapper}>
+      <div className={classes.productsSection}>
+        <h1>Products</h1>
+        <section className={classes.productCategoriesCard}>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard1}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop vegetables</button>
+              </div>
+            </div>
           </div>
-          <div className={classes.Input}>
-            Search:{' '}
-            <input
-              style={{
-                marginLeft: '1rem',
-                height: '25px',
-                border: '1px solid black',
-              }}
-              type="text"
-            ></input>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard2}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop drinks</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={classes.Cards}>
-          {category === DISPLAY_ALLITEMS && unfilteredList}
-          {category === DISPLAY_VEGETABLES && filteredList}
-          {category === DISPLAY_SNACKS && filteredList}
-          {category === DISPLAY_DRINKS && filteredList}
-          {category === DISPLAY_MEAT_POULTRY && filteredList}
-        </div>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard3}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop snacks</button>
+              </div>
+            </div>
+          </div>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard3}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop snacks</button>
+              </div>
+            </div>
+          </div>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard1}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop vegetables</button>
+              </div>
+            </div>
+          </div>
+          <div className={classes.categoryCard}>
+            <div className={classes.imgCard1}>
+              <div className={classes.imgCardCover}></div>
+              <div className={classes.imgCardText}>
+                <button>Shop vegetables</button>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   )
