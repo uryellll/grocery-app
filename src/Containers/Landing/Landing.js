@@ -5,6 +5,13 @@ import Footer from '../../Components/Footer/Footer'
 import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import { connect } from 'react-redux'
 
+import delivery1 from '../../Assets/card/delivery1.svg'
+import delivery2 from '../../Assets/card/delivery2.svg'
+import delivery3 from '../../Assets/card/delivery3.svg'
+import vegetables from '../../Assets/vegetables/vegetables.jpg'
+import fruits from '../../Assets/fruits/fruits.jpg'
+import spices from '../../Assets/spices/spices.jpg'
+
 const mapStateToProps = (state) => {
   return {
     products: state.shop.products,
@@ -15,77 +22,86 @@ const landing = ({ products }) => {
   return (
     <div className={classes.wrapper}>
       <section className={classes.banner}>
-        <div className={classes.svgContainer}>
-          <svg viewBox="0 0 1440 320">
-            <path
-              fill="#75cfb8"
-              fill-opacity="1"
-              d="M0,128L48,133.3C96,139,192,149,288,144C384,139,480,117,576,133.3C672,149,768,203,864,208C960,213,1056,171,1152,144C1248,117,1344,107,1392,101.3L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-            ></path>
-          </svg>
-        </div>
+        <div className={classes.cover}></div>
         <div className={classes.greeting}>
           <h1>Lorem, ipsum dolor.</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo,
-            aliquid?
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Dignissimos amet at totam recusandae sit illum ullam nemo nostrum
+            exercitationem.
           </p>
           <Link to="/products">
             <button>Shop now</button>
           </Link>
         </div>
       </section>
-      <section className={classes.productCategoriesCard}>
-        <div className={classes.categoryCard}>
-          <h1>Variety of items</h1>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.imgCard1}>
-            <div className={classes.imgCardCover}></div>
-            <div className={classes.imgCardText}>
-              <button>Shop vegetables</button>
-            </div>
+      <section className={classes.products}>
+        <h1>Our products</h1>
+        <div className={classes.productsWrapper}>
+          <div className={classes.productCard}>
+            <button className={classes.productBtn}>Shop Fruits</button>
+            <div className={classes.productCover}></div>
+            <img src={fruits} alt="Images of fruits" />
           </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.imgCard2}>
-            <div className={classes.imgCardCover}></div>
-            <div className={classes.imgCardText}>
-              <button>Shop drinks</button>
-            </div>
+          <div className={classes.productCard}>
+            <button className={classes.productBtn}>Shop Spices</button>
+            <div className={classes.productCover}></div>
+            <img src={spices} alt="Images of vegetables" />
           </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.imgCard3}>
-            <div className={classes.imgCardCover}></div>
-            <div className={classes.imgCardText}>
-              <button>Shop snacks</button>
-            </div>
+          <div className={classes.productCard}>
+            <button className={classes.productBtn}>Shop Vegetables</button>
+            <div className={classes.productCover}></div>
+            <img src={vegetables} alt="Images of vegetables" />
           </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.imgCard3}>
-            <div className={classes.imgCardCover}></div>
-            <div className={classes.imgCardText}>
-              <button>Shop snacks</button>
-            </div>
-          </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.imgCard1}>
-            <div className={classes.imgCardCover}></div>
-            <div className={classes.imgCardText}>
-              <button>Shop vegetables</button>
-            </div>
+          <div className={classes.productCard}>
+            <button className={classes.productBtn}>Shop Fruits</button>
+            <div className={classes.productCover}></div>
+            <img src={fruits} alt="Images of fruits" />
           </div>
         </div>
       </section>
-      <section className={classes.popularProducts}>
-        <h1>Popular Products</h1>
-        <div className={classes.popularProductsInnerContainer}>
-          {products.map((item) => {
-            return <GroceryCard productData={item} />
-          })}
+      <section className={classes.cardSection}>
+        <h1>Why shop at us?</h1>
+        <div className={classes.cardSectionWrapper}>
+          <div className={classes.card}>
+            <div className={classes.cardDescription}>
+              <h2>Lorem, ipsum.</h2>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Repudiandae nam voluptates, molestias maiores obcaecati sint
+                perspiciatis officiis impedit aperiam mollitia!
+              </p>
+            </div>
+            <div className={classes.img}>
+              <img src={delivery1} alt="" />
+            </div>
+          </div>
+          <div className={classes.card}>
+            <div className={classes.cardDescription}>
+              <h2>Lorem, ipsum.</h2>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Repudiandae nam voluptates, molestias maiores obcaecati sint
+                perspiciatis officiis impedit aperiam mollitia!
+              </p>
+            </div>
+            <div className={classes.img}>
+              <img src={delivery2} alt="" />
+            </div>
+          </div>
+          <div className={classes.card}>
+            <div className={classes.cardDescription}>
+              <h2>Lorem, ipsum.</h2>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Repudiandae nam voluptates, molestias maiores obcaecati sint
+                perspiciatis officiis impedit aperiam mollitia!
+              </p>
+            </div>
+            <div className={classes.img}>
+              <img src={delivery3} alt="" />
+            </div>
+          </div>
         </div>
       </section>
     </div>

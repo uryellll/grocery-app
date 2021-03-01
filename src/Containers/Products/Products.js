@@ -3,7 +3,10 @@ import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 import NavigationBar from '../../Components/NavigationBar/NavigationBar'
 import classes from './Products.module.css'
 import { connect } from 'react-redux' //connecting redux to component
-import { Button } from '@material-ui/core'
+
+import chips from '../../Assets/card/chips.jpg'
+import drinks from '../../Assets/card/drinks.jpg'
+import vegetables from '../../Assets/card/vegetables.jpg'
 
 const mapStateToProps = (state) => {
   return {
@@ -42,59 +45,56 @@ const Products = ({ products }) => {
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.productsSection}>
-        <h1>Products</h1>
-        <section className={classes.productCategoriesCard}>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard1}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop vegetables</button>
-              </div>
-            </div>
+      <section className={classes.productCategoriesCard}>
+        <div className={classes.sectionTitle}>
+          <h1>Our Products</h1>
+        </div>
+        <div className={classes.categoryCard}>
+          <div className={classes.itemDescription}>
+            <h1>Snacks</h1>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
+            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
+            itaque reiciendis.
           </div>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard2}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop drinks</button>
-              </div>
+          <div className={classes.productImg}>
+            <div className={classes.imgCover}></div>
+            <div className={classes.btn}>
+              <button className={classes.imgBtn}>Shop Snacks</button>
             </div>
+            <img src={chips} alt="chips img" />
           </div>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard3}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop snacks</button>
-              </div>
+        </div>
+        <div className={classes.categoryCard}>
+          <div className={classes.itemDescription}>
+            <h1>Vegetables</h1>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
+            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
+            itaque reiciendis.
+          </div>
+          <div className={classes.productImg}>
+            <div className={classes.imgCover}></div>
+            <div className={classes.btn}>
+              <button className={classes.imgBtn}>Shop Snacks</button>
             </div>
+            <img src={vegetables} alt="chips img" />
           </div>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard3}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop snacks</button>
-              </div>
+        </div>
+        <div className={classes.categoryCard}>
+          <div className={classes.itemDescription}>
+            <h1>Drinks</h1>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
+            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
+            itaque reiciendis.
+          </div>
+          <div className={classes.productImg}>
+            <div className={classes.imgCover}></div>
+            <div className={classes.btn}>
+              <button className={classes.imgBtn}>Shop Snacks</button>
             </div>
+            <img src={drinks} alt="chips img" />
           </div>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard1}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop vegetables</button>
-              </div>
-            </div>
-          </div>
-          <div className={classes.categoryCard}>
-            <div className={classes.imgCard1}>
-              <div className={classes.imgCardCover}></div>
-              <div className={classes.imgCardText}>
-                <button>Shop vegetables</button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }
