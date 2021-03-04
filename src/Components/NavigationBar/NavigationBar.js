@@ -7,7 +7,7 @@ function NavigationBar() {
   const [openMenu, setOpenMenu] = useState(false)
   return (
     <div className={classes.navbarWrapper}>
-      <h2>Lorem, ipsum.</h2>
+      <h2>The Logo</h2>
       <div className={classes.linksWrapper}>
         <div className={classes.navLinks}>
           <Link to="/">Home</Link>
