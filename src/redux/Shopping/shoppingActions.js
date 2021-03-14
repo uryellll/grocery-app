@@ -46,3 +46,24 @@ export const loadCurrentItem = (item) => {
     payload: item,
   }
 }
+
+export const searchItem = (value) => {
+  return {
+    type: actionTypes.SEARCH_ITEM,
+    payload: value,
+  }
+}
+
+export const filterItems = (value) => {
+  return {
+    type: actionTypes.FILTER_ITEMS,
+    payload: value,
+  }
+}
+
+export const changeCategory = (value) => {
+  return {
+    type: actionTypes.SET_CATEGORY,
+    payload: value,
+  }
+}

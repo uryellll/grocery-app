@@ -1,62 +1,49 @@
+.shoppingCartWrapper {
+  padding-top: 4rem;
+  padding-left: 1rem;
+}
+
+b {
+  text-align: center;
+  margin: 1rem;
+}
+
 .CartContainer {
   display: flex;
-  width: 100vw;
+  flex-direction: column;
+  width: 100%;
   justify-content: flex-start;
-  border: 1px red solid;
   padding: 1rem;
 }
 
-.CartInfo,
 .CartItems {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  border: 1px solid red;
-}
-
-.CartInfo {
-  align-items: left;
-  width: 20vw;
-  border: 1px solid blue;
-}
-
-.CartInfoo {
-  display: flex;
-  justify-content: space-between;
 }
 
 .CartItems {
-  width: 80vw;
+  width: 100%;
   flex-wrap: wrap;
-  border: 1px solid blue;
 }
 
 .CartTitleContainer {
   display: flex;
   justify-content: space-between;
   margin: 0.5rem 1.5rem;
-  border: 1px solid blue;
 }
 
-.CartImageTitle,
 .CartProductQuantity,
 .CartRemove {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid blue;
-}
-
-.CartImageTitle {
-  width: 8rem;
-  border: 1px solid blue;
 }
 
 .CartProductName {
   display: flex;
   justify-content: space-between;
   width: 18rem;
-  border: 1px solid blue;
 }
 
 .CartProductQuantity {
@@ -65,5 +52,35 @@
 
 .CartRemove {
   width: 5rem;
-  border: 1px solid blue;
+}
+
+.cartSummaryContainer {
+  width: 100%;
+}
+
+details {
+  width: 100%;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
+}
+
+.cartSummary div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
 }

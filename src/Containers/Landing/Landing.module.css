@@ -139,6 +139,10 @@ h1 {
   width: 100%;
 }
 
+.productCard > img {
+  position: absolute;
+}
+
 .productCover {
   position: absolute;
   left: 0%;
@@ -216,7 +220,12 @@ h1 {
   }
 
   .productsWrapper {
-    max-width: 900px;
+    max-width: 1200px;
     border: 1px solid red;
+  }
+
+  .productCard {
+    height: 450px;
+    width: 500px;
   }
 }

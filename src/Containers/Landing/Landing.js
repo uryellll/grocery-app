@@ -11,6 +11,7 @@ import delivery3 from '../../Assets/card/delivery3.svg'
 import vegetables from '../../Assets/vegetables/vegetables.jpg'
 import fruits from '../../Assets/fruits/fruits.jpg'
 import spices from '../../Assets/spices/spices.jpg'
+import grains from '../../Assets/grains/grains.jpeg'
 
 const mapStateToProps = (state) => {
   return {
@@ -54,9 +55,9 @@ const landing = ({ products }) => {
             <img src={vegetables} alt="Images of vegetables" />
           </div>
           <div className={classes.productCard}>
-            <button className={classes.productBtn}>Shop Fruits</button>
+            <button className={classes.productBtn}>Shop Grains</button>
             <div className={classes.productCover}></div>
-            <img src={fruits} alt="Images of fruits" />
+            <img src={grains} alt="Images of grains" />
           </div>
         </div>
       </section>

@@ -13,11 +13,16 @@ const CartItems = ({
   removeFromCart,
   reduceQuantity,
 }) => {
+  function checkQuantity() {
+    if (cartItemData.quantity === 1) {
+      removeFromCart(cartItemData.id)
+    } else {
+      reduceQuantity(cartItemData.id)
+    }
+  }
+
   return (
     <div className={classes.container}>
-      <div className={classes.cartItemImage}>
-        <img src={cartItemData.image} alt={cartItemData.name} />
-      </div>
       <div className={classes.cartItemDetails}>
         <p>{cartItemData.name}</p>
         <p>{cartItemData.price}</p>
@@ -33,7 +38,7 @@ const CartItems = ({
         <p>{cartItemData.quantity}</p>
         <button
           onClick={() => {
-            reduceQuantity(cartItemData.id)
+            checkQuantity(cartItemData.id)
           }}
         >
           -

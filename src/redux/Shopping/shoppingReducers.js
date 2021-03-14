@@ -13,6 +13,7 @@ const products = data.products.map((item) => {
 
 const INITIAL_STATE = {
   products: products,
+  category: '',
   cart: [],
   currentItem: null,
 }
@@ -64,11 +65,18 @@ const shopReducer = (state = INITIAL_STATE, action) => {
             : item,
         ),
       }
+    case actionTypes.SET_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
+      }
+
     case actionTypes.LOAD_CURRENT_ITEM:
       return {
         ...state,
         currentItem: action.payload,
       }
+
     default:
       return state
   }

@@ -1,4 +1,3 @@
-import classes from './App.module.css'
 import { Route, Switch } from 'react-router-dom'
 import Landing from './Containers/Landing/Landing'
 import Error404 from './Components/Error/Error404'
@@ -8,11 +7,13 @@ import Careers from './Containers/Careers/Careers'
 import FAQs from './Containers/FAQs/FAQs'
 import ShoppingCart from './Containers/Shopping Cart/ShoppingCart'
 import NavigationBar from './Components/NavigationBar/NavigationBar'
+import ScrollToTop from './Components/ScrollToTop/scrollToTop'
 
 const App = () => {
   return (
     <div>
       <NavigationBar />
+      <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/products" component={Products} />

@@ -3,21 +3,9 @@
   justify-content: space-between;
   align-items: center;
   margin: 0.5rem;
-  padding: 1rem;
-}
-
-.cartItemImage {
-  height: 8rem;
-  width: 8rem;
-  position: relative;
-  border: 1px solid blue;
-}
-
-img {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #aaa;
 }
 
 .cartItemDetails {
@@ -25,14 +13,12 @@ img {
   justify-content: space-between;
   width: 18rem;
   padding: 0rem 1rem;
-  border: 1px solid blue;
 }
 
 .adjQuantity {
   display: flex;
   width: 7rem;
   justify-content: space-between;
-  border: 1px solid blue;
 }
 
 .adjQuantity button {
@@ -40,12 +26,10 @@ img {
   width: 1.5rem;
   border-radius: 0.3rem;
   border: none;
-  border: 1px solid blue;
 }
 
 .SubTotal {
   width: 7rem;
-  border: 1px solid blue;
   text-align: center;
 }
 

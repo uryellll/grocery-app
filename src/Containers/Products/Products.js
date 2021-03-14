@@ -1,102 +1,105 @@
 import React, { useState } from 'react'
+import './Products.css'
 import GroceryCard from '../../Components/GroceryCard/GroceryCard'
-import NavigationBar from '../../Components/NavigationBar/NavigationBar'
-import classes from './Products.module.css'
-import { connect } from 'react-redux' //connecting redux to component
+import { changeCategory } from '../../redux/Shopping/shoppingActions'
+import { useSelector, useDispatch } from 'react-redux'
 
-import chips from '../../Assets/card/chips.jpg'
-import drinks from '../../Assets/card/drinks.jpg'
-import vegetables from '../../Assets/card/vegetables.jpg'
+const Products = () => {
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.shop.products)
+  const category = useSelector((state) => state.shop.category)
+  const [searching, setSearching] = useState(false)
+  const [findItem, setFindItem] = useState('')
+  const [foundItem, setFoundItem] = useState([])
 
-const mapStateToProps = (state) => {
-  return {
-    products: state.shop.products,
+  function selectCategory(e) {
+    const { value } = e.target
+    dispatch(changeCategory(value))
   }
-}
 
-const DISPLAY_ALLITEMS = ''
-const DISPLAY_VEGETABLES = 'vegetable'
-const DISPLAY_SNACKS = 'snack'
-const DISPLAY_DRINKS = 'drink'
-const DISPLAY_MEAT_POULTRY = 'meatPoultry'
-
-const Products = ({ products }) => {
-  const [category, setCategory] = useState(DISPLAY_ALLITEMS)
-
-  const filterProducts = (e) => {
+  function handleSearch(e) {
     e.preventDefault()
-    setCategory(e.target.value)
-    console.log(category)
+    if (e.target.value === '') {
+      setSearching(false)
+      setFindItem(e.target.value)
+      console.log('not searching')
+    } else {
+      setSearching(true)
+      setFindItem(e.target.value)
+      searchItem()
+    }
   }
 
-  const filteredProducts = products.filter((product) => {
-    return product.type === category
-  })
+  function searchItem() {
+    console.log(`searching ${findItem}`)
+    const searchResult = products.filter(
+      (item) => item.name.toLowerCase().indexOf(findItem) > -1,
+    )
+    setFoundItem(searchResult)
+  }
 
-  const filteredList = filteredProducts.map((product) => {
-    return <GroceryCard key={Math.random()} productData={product} />
-  })
+  const searchResult = foundItem.map((item) => (
+    <GroceryCard key={item.id} productData={item} />
+  ))
+  const filterProducts = products.filter((item) => item.type === category)
+  const filteredProductList = filterProducts.map((item) => (
+    <GroceryCard key={item.id} productData={item} />
+  ))
+  const fullProductList = products.map((item) => (
+    <GroceryCard key={item.id} productData={item} />
+  ))
 
-  const unfilteredList = products.map((product) => {
-    return <GroceryCard key={Math.random()} productData={product} />
-  })
-
-  console.log(filteredList)
+  console.log(foundItem)
 
   return (
-    <div className={classes.wrapper}>
-      <section className={classes.productCategoriesCard}>
-        <div className={classes.sectionTitle}>
-          <h1>Our Products</h1>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.itemDescription}>
-            <h1>Snacks</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
-            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
-            itaque reiciendis.
+    <div className="wrapper">
+      <div className="product-header">
+        <h1>Our Products</h1>
+      </div>
+      <div className="products-container">
+        <div className="top-bar">
+          <div className="filter">
+            <select
+              name="category"
+              id="category"
+              onChange={(e) => selectCategory(e)}
+            >
+              <option value="" disabled defaultValue>
+                Select category
+              </option>
+              <option value="">All products</option>
+              <option value="vegetable">Vegetables</option>
+              <option value="fruit">Fruits</option>
+              <option value="grain">Grains</option>
+              <option value="spice">Spices</option>
+            </select>
           </div>
-          <div className={classes.productImg}>
-            <div className={classes.imgCover}></div>
-            <div className={classes.btn}>
-              <button className={classes.imgBtn}>Shop Snacks</button>
-            </div>
-            <img src={chips} alt="chips img" />
-          </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.itemDescription}>
-            <h1>Vegetables</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
-            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
-            itaque reiciendis.
-          </div>
-          <div className={classes.productImg}>
-            <div className={classes.imgCover}></div>
-            <div className={classes.btn}>
-              <button className={classes.imgBtn}>Shop Snacks</button>
-            </div>
-            <img src={vegetables} alt="chips img" />
-          </div>
-        </div>
-        <div className={classes.categoryCard}>
-          <div className={classes.itemDescription}>
-            <h1>Drinks</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure
-            magni nemo! Dicta quod rerum quo voluptatum nam animi mollitia enim
-            itaque reiciendis.
-          </div>
-          <div className={classes.productImg}>
-            <div className={classes.imgCover}></div>
-            <div className={classes.btn}>
-              <button className={classes.imgBtn}>Shop Snacks</button>
-            </div>
-            <img src={drinks} alt="chips img" />
+          <div className="search">
+            <input
+              type="text"
+              placeholder=" What are you looking for? "
+              value={findItem}
+              onChange={handleSearch}
+            />
+            <button
+              className="search-btn"
+              type="submit"
+              onClick={(e) => searchItem(e)}
+            >
+              Search
+            </button>
           </div>
         </div>
-      </section>
+        <div className="products-list">
+          {searching
+            ? searchResult
+            : category === ''
+            ? fullProductList
+            : filteredProductList}
+        </div>
+      </div>
     </div>
   )
 }
 
-export default connect(mapStateToProps)(Products)
+export default Products

@@ -4,11 +4,6 @@ import garlic from '../Assets/vegetables/garlic.png'
 import onionRed from '../Assets/vegetables/onion-red.png'
 import onion from '../Assets/vegetables/onion.png'
 import tomatoes from '../Assets/vegetables/tomatoes.png'
-import lays from '../Assets/chips/chips-lays.png'
-import laysLowfat from '../Assets/chips/chips-lays-lowfat.png'
-import laysHoney from '../Assets/chips/chips-lays-honeybbq.png'
-import coke from '../Assets/drinks/coke.png'
-import pepsi from '../Assets/drinks/pepsi.png'
 
 export default {
   products: [
@@ -55,53 +50,25 @@ export default {
       type: 'vegetable',
     },
     {
-      id: 'lays',
-      name: 'Lays',
-      image: lays,
+      id: 'apple',
+      name: 'apple',
+      image: tomatoes,
       price: 100,
-      type: 'snack',
+      type: 'fruit',
     },
     {
-      id: 'laysHoneyBbq',
-      name: 'Lays HoneyBbq',
-      image: laysHoney,
+      id: 'orange',
+      name: 'Orange',
+      image: tomatoes,
       price: 100,
-      type: 'snack',
+      type: 'fruit',
     },
     {
-      id: 'laysLowfat',
-      name: 'Lays Lowfat',
-      image: laysLowfat,
+      id: 'grapes',
+      name: 'Grapes',
+      image: tomatoes,
       price: 100,
-      type: 'snack',
-    },
-    {
-      id: 'coke',
-      name: 'Coke',
-      image: coke,
-      price: 100,
-      type: 'drink',
-    },
-    {
-      id: 'pepsi',
-      name: 'Pepsi',
-      image: pepsi,
-      price: 100,
-      type: 'drink',
-    },
-    {
-      id: 'meat',
-      name: 'Meat',
-      image: lays,
-      price: 100,
-      type: 'meatPoultry',
-    },
-    {
-      id: 'chickenWings',
-      name: 'Chicken Wings',
-      image: laysHoney,
-      price: 100,
-      type: 'meatPoultry',
+      type: 'fruit',
     },
   ],
 }
