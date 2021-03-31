@@ -23,9 +23,6 @@
   background: url('../../Assets/banner/banner.jpg') no-repeat;
   background-size: cover;
   color: #f0e5d8;
-  /* mask-image: url('../../Assets/banner/blob.svg');
-  mask-repeat: no-repeat;
-  mask-position: right; */
 }
 
 .cover {
@@ -221,7 +218,6 @@ h1 {
 
   .productsWrapper {
     max-width: 1200px;
-    border: 1px solid red;
   }
 
   .productCard {
