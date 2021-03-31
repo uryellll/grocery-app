@@ -1,18 +1,8 @@
 import * as actionTypes from './shoppingTypes'
-import data from '../../Components/data'
-
-const products = data.products.map((item) => {
-  return {
-    id: item.id,
-    name: item.name,
-    image: item.image,
-    price: item.price,
-    type: item.type,
-  }
-})
 
 const INITIAL_STATE = {
   products: products,
+  displayedProducts: products,
   category: '',
   cart: [],
   currentItem: null,
@@ -71,10 +61,30 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         category: action.payload,
       }
 
+    case actionTypes.SET_PRODUCTS:
+      return { ...state, products: action.payload }
+
     case actionTypes.LOAD_CURRENT_ITEM:
       return {
         ...state,
         currentItem: action.payload,
+      }
+
+    case actionTypes.FILTER_PRODUCTS:
+      if (action.payload === '') {
+        return {
+          ...state,
+          displayedProducts: products,
+        }
+      } else {
+        const filteredProducts = state.products.filter(
+          (item) => item.type === action.payload,
+        )
+        console.log(filteredProducts)
+        return {
+          ...state,
+          displayedProducts: filteredProducts,
+        }
       }
 
     default:

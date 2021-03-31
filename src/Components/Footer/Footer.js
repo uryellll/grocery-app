@@ -62,7 +62,6 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <p>All rights reserved. 2020</p>
     </footer>
   )
 }

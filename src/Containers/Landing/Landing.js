@@ -1,9 +1,8 @@
 import classes from './Landing.module.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Footer from '../../Components/Footer/Footer'
-import GroceryCard from '../../Components/GroceryCard/GroceryCard'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
+import { changeCategory } from '../../redux/Shopping/shoppingActions'
 
 import delivery1 from '../../Assets/card/delivery1.svg'
 import delivery2 from '../../Assets/card/delivery2.svg'
@@ -19,7 +18,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const landing = ({ products }) => {
+const Landing = ({ products }) => {
+  const dispatch = useDispatch()
+
   return (
     <div className={classes.wrapper}>
       <section className={classes.banner}>
@@ -40,22 +41,46 @@ const landing = ({ products }) => {
         <h1>Our products</h1>
         <div className={classes.productsWrapper}>
           <div className={classes.productCard}>
-            <button className={classes.productBtn}>Shop Fruits</button>
+            <Link
+              to="/products"
+              className={classes.productBtn}
+              onClick={() => dispatch(changeCategory('fruit'))}
+            >
+              Shop fruits
+            </Link>
             <div className={classes.productCover}></div>
             <img src={fruits} alt="Images of fruits" />
           </div>
           <div className={classes.productCard}>
-            <button className={classes.productBtn}>Shop Spices</button>
+            <Link
+              to="/products"
+              className={classes.productBtn}
+              onClick={() => dispatch(changeCategory('spice'))}
+            >
+              Shop spices
+            </Link>
             <div className={classes.productCover}></div>
-            <img src={spices} alt="Images of vegetables" />
+            <img src={spices} alt="Images of spices" />
           </div>
           <div className={classes.productCard}>
-            <button className={classes.productBtn}>Shop Vegetables</button>
+            <Link
+              to="/products"
+              className={classes.productBtn}
+              onClick={() => dispatch(changeCategory('vegetable'))}
+            >
+              Shop Vegetables
+            </Link>
             <div className={classes.productCover}></div>
             <img src={vegetables} alt="Images of vegetables" />
           </div>
           <div className={classes.productCard}>
-            <button className={classes.productBtn}>Shop Grains</button>
+            <Link
+              to="/products"
+              className={classes.productBtn}
+              onClick={() => dispatch(changeCategory('grain'))}
+            >
+              Shop grains
+            </Link>
             <div className={classes.productCover}></div>
             <img src={grains} alt="Images of grains" />
           </div>
@@ -109,4 +134,4 @@ const landing = ({ products }) => {
   )
 }
 
-export default connect(mapStateToProps)(landing)
+export default connect(mapStateToProps)(Landing)

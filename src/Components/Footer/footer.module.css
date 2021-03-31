@@ -8,13 +8,7 @@
   flex-direction: column;
   padding: 10px 25px;
   position: relative;
-}
-
-.footerContainer > p {
-  text-align: center;
-  position: absolute;
-  bottom: 25px;
-  left: 45%;
+  font-size: 0.8rem;
 }
 
 .footerLinks {

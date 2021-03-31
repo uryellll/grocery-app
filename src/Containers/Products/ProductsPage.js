@@ -1,20 +1,37 @@
-import React, { useState } from 'react'
-import './Products.css'
-import GroceryCard from '../../Components/GroceryCard/GroceryCard'
-import { changeCategory } from '../../redux/Shopping/shoppingActions'
+import React, { useState, useEffect } from 'react'
+import './ProductsPage.css'
+import {
+  changeCategory,
+  fetchProducts,
+  filterProducts,
+} from '../../redux/Shopping/shoppingActions'
 import { useSelector, useDispatch } from 'react-redux'
+import Products from './Products/Products'
+import Pagination from '../../Components/Pagination/Pagination'
+import GroceryCard from '../../Components/GroceryCard/GroceryCard'
 
-const Products = () => {
+const ProductsPage = () => {
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.shop.products)
+  const products = useSelector((state) => state.shop.displayedProducts)
   const category = useSelector((state) => state.shop.category)
   const [searching, setSearching] = useState(false)
   const [findItem, setFindItem] = useState('')
   const [foundItem, setFoundItem] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage] = useState(12)
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [])
+
+  useEffect(() => {
+    dispatch(filterProducts(category))
+  }, [category])
 
   function selectCategory(e) {
     const { value } = e.target
     dispatch(changeCategory(value))
+    dispatch(filterProducts(value))
   }
 
   function handleSearch(e) {
@@ -22,7 +39,6 @@ const Products = () => {
     if (e.target.value === '') {
       setSearching(false)
       setFindItem(e.target.value)
-      console.log('not searching')
     } else {
       setSearching(true)
       setFindItem(e.target.value)
@@ -31,25 +47,25 @@ const Products = () => {
   }
 
   function searchItem() {
-    console.log(`searching ${findItem}`)
     const searchResult = products.filter(
       (item) => item.name.toLowerCase().indexOf(findItem) > -1,
     )
     setFoundItem(searchResult)
   }
 
-  const searchResult = foundItem.map((item) => (
-    <GroceryCard key={item.id} productData={item} />
-  ))
-  const filterProducts = products.filter((item) => item.type === category)
-  const filteredProductList = filterProducts.map((item) => (
-    <GroceryCard key={item.id} productData={item} />
-  ))
-  const fullProductList = products.map((item) => (
-    <GroceryCard key={item.id} productData={item} />
-  ))
+  function handlePageNumber(number) {
+    setCurrentPage(number)
+  }
 
-  console.log(foundItem)
+  const itemFound = foundItem.map((item) => (
+    <GroceryCard key={Math.random()} productData={item} />
+  ))
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct,
+  )
 
   return (
     <div className="wrapper">
@@ -63,6 +79,7 @@ const Products = () => {
               name="category"
               id="category"
               onChange={(e) => selectCategory(e)}
+              value={category}
             >
               <option value="" disabled defaultValue>
                 Select category
@@ -91,15 +108,24 @@ const Products = () => {
           </div>
         </div>
         <div className="products-list">
-          {searching
-            ? searchResult
-            : category === ''
-            ? fullProductList
-            : filteredProductList}
+          {searching ? (
+            <div className="list-wrapper">
+              <div className="products">{itemFound}</div>
+            </div>
+          ) : (
+            <div>
+              <Products products={currentProducts} />
+              <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={products.length}
+                handlePageNumber={handlePageNumber}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
   )
 }
 
-export default Products
+export default ProductsPage

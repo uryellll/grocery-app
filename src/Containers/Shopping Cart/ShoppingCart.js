@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './shoppingCart.module.css'
 import { connect } from 'react-redux'
-import NavigationBar from '../../Components/NavigationBar/NavigationBar'
 import CartItems from '../../Components/ShoppingCart/CartItems'
 
 const mapStateToProps = (state) => {

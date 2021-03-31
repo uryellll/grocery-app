@@ -1,7 +1,7 @@
 import * as actionTypes from './shoppingTypes'
+import axios from 'axios'
 
 export const addToCart = (itemID) => {
-  console.log(itemID + ' added')
   return {
     type: actionTypes.ADD_TO_CART,
     payload: {
@@ -11,7 +11,6 @@ export const addToCart = (itemID) => {
 }
 
 export const removeFromCart = (itemID) => {
-  console.log(itemID + ' removed')
   return {
     type: actionTypes.REMOVE_FROM_CART,
     payload: {
@@ -64,6 +63,33 @@ export const filterItems = (value) => {
 export const changeCategory = (value) => {
   return {
     type: actionTypes.SET_CATEGORY,
+    payload: value,
+  }
+}
+
+export const filterProducts = (value) => {
+  return {
+    type: actionTypes.FILTER_PRODUCTS,
+    payload: value,
+  }
+}
+
+export const fetchProducts = () => (dispatch, getState) => {
+  axios
+    .get('https://merngroceryapp-server.herokuapp.com/')
+    .then((res) => {
+      console.log(res.data)
+      const products = res.data
+      dispatch(setProducts(products))
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+}
+
+export const setProducts = (value) => {
+  return {
+    type: actionTypes.SET_PRODUCTS,
     payload: value,
   }
 }
