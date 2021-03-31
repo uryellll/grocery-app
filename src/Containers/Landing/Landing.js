@@ -32,7 +32,7 @@ const Landing = ({ products }) => {
             Dignissimos amet at totam recusandae sit illum ullam nemo nostrum
             exercitationem.
           </p>
-          <Link to="/products">
+          <Link to="/products" onClick={() => dispatch(changeCategory(''))}>
             <button>Shop now</button>
           </Link>
         </div>

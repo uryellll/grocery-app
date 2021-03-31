@@ -1,8 +1,8 @@
 import * as actionTypes from './shoppingTypes'
 
 const INITIAL_STATE = {
-  products: products,
-  displayedProducts: products,
+  products: [],
+  displayedProducts: [],
   category: '',
   cart: [],
   currentItem: null,
@@ -62,7 +62,10 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       }
 
     case actionTypes.SET_PRODUCTS:
-      return { ...state, products: action.payload }
+      return {
+        ...state,
+        products: action.payload,
+      }
 
     case actionTypes.LOAD_CURRENT_ITEM:
       return {
@@ -74,7 +77,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       if (action.payload === '') {
         return {
           ...state,
-          displayedProducts: products,
+          displayedProducts: state.products,
         }
       } else {
         const filteredProducts = state.products.filter(

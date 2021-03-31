@@ -24,10 +24,6 @@ const ProductsPage = () => {
     dispatch(fetchProducts())
   }, [])
 
-  useEffect(() => {
-    dispatch(filterProducts(category))
-  }, [category])
-
   function selectCategory(e) {
     const { value } = e.target
     dispatch(changeCategory(value))

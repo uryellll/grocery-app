@@ -76,11 +76,12 @@ export const filterProducts = (value) => {
 
 export const fetchProducts = () => (dispatch, getState) => {
   axios
-    .get('https://merngroceryapp-server.herokuapp.com/')
+    .get('https://merngroceryapp-server.herokuapp.com/api')
     .then((res) => {
       console.log(res.data)
       const products = res.data
       dispatch(setProducts(products))
+      dispatch(filterProducts(''))
     })
     .catch((err) => {
       console.log(err.message)
