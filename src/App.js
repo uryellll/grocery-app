@@ -8,6 +8,7 @@ import ShoppingCart from './Containers/Shopping Cart/ShoppingCart'
 import NavigationBar from './Components/NavigationBar/NavigationBar'
 import ScrollToTop from './Components/ScrollToTop/scrollToTop'
 import ProductsPage from './Containers/Products/ProductsPage'
+import Login from './Containers/Login/Login'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/about-us" component={About} />
         <Route path="/careers" component={Careers} />
         <Route path="/faqs" component={FAQs} />
+        <Route path="/login" exact component={Login} />
         <Route component={Error404} />
       </Switch>
     </div>

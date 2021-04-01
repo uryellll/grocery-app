@@ -50,6 +50,8 @@ select {
   height: 2rem;
   width: 5rem;
   border: none;
+  background-color: #75cfb8;
+  color: #fafafa;
 }
 
 .products-list {
