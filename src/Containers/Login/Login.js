@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './Login.module.css'
-import svg from '../../Assets/shopping-app.svg'
 
 function Login() {
   return (
