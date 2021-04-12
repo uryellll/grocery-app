@@ -76,7 +76,7 @@ export const filterProducts = (value) => {
 
 export const fetchProducts = () => (dispatch, getState) => {
   axios
-    .get(process.env.REACT_APP_API)
+    .get(process.env.REACT_APP_GROCERY_API)
     .then((res) => {
       console.log(res.data)
       const products = res.data
