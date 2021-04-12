@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './ProductsPage.css'
 import {
   changeCategory,
-  fetchProducts,
   filterProducts,
 } from '../../redux/Shopping/shoppingActions'
 import { useSelector, useDispatch } from 'react-redux'
@@ -19,10 +18,6 @@ const ProductsPage = () => {
   const [foundItem, setFoundItem] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [productsPerPage] = useState(12)
-
-  useEffect(() => {
-    dispatch(fetchProducts())
-  }, [])
 
   function selectCategory(e) {
     const { value } = e.target

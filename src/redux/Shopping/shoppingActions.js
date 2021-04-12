@@ -76,7 +76,7 @@ export const filterProducts = (value) => {
 
 export const fetchProducts = () => (dispatch, getState) => {
   axios
-    .get('https://merngroceryapp-server.herokuapp.com/api')
+    .get(process.env.REACT_APP_API)
     .then((res) => {
       console.log(res.data)
       const products = res.data

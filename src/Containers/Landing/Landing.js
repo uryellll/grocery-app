@@ -1,8 +1,12 @@
 import classes from './Landing.module.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux'
-import { changeCategory } from '../../redux/Shopping/shoppingActions'
+import { useDispatch } from 'react-redux'
+import {
+  changeCategory,
+  filterProducts,
+  fetchProducts,
+} from '../../redux/Shopping/shoppingActions'
 
 import delivery1 from '../../Assets/card/delivery1.svg'
 import delivery2 from '../../Assets/card/delivery2.svg'
@@ -12,14 +16,17 @@ import fruits from '../../Assets/fruits/fruits.jpg'
 import spices from '../../Assets/spices/spices.jpg'
 import grains from '../../Assets/grains/grains.jpeg'
 
-const mapStateToProps = (state) => {
-  return {
-    products: state.shop.products,
-  }
-}
-
-const Landing = ({ products }) => {
+const Landing = () => {
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [])
+
+  function handleClick(value) {
+    dispatch(changeCategory(value))
+    dispatch(filterProducts(value))
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -32,7 +39,7 @@ const Landing = ({ products }) => {
             Dignissimos amet at totam recusandae sit illum ullam nemo nostrum
             exercitationem.
           </p>
-          <Link to="/products" onClick={() => dispatch(changeCategory(''))}>
+          <Link to="/products" onClick={() => handleClick('')}>
             <button>Shop now</button>
           </Link>
         </div>
@@ -44,7 +51,7 @@ const Landing = ({ products }) => {
             <Link
               to="/products"
               className={classes.productBtn}
-              onClick={() => dispatch(changeCategory('fruit'))}
+              onClick={() => handleClick('fruit')}
             >
               Shop fruits
             </Link>
@@ -55,7 +62,7 @@ const Landing = ({ products }) => {
             <Link
               to="/products"
               className={classes.productBtn}
-              onClick={() => dispatch(changeCategory('spice'))}
+              onClick={() => handleClick('spice')}
             >
               Shop spices
             </Link>
@@ -66,7 +73,7 @@ const Landing = ({ products }) => {
             <Link
               to="/products"
               className={classes.productBtn}
-              onClick={() => dispatch(changeCategory('vegetable'))}
+              onClick={() => handleClick('vegetable')}
             >
               Shop Vegetables
             </Link>
@@ -77,7 +84,7 @@ const Landing = ({ products }) => {
             <Link
               to="/products"
               className={classes.productBtn}
-              onClick={() => dispatch(changeCategory('grain'))}
+              onClick={() => handleClick('grain')}
             >
               Shop grains
             </Link>
@@ -134,4 +141,4 @@ const Landing = ({ products }) => {
   )
 }
 
-export default connect(mapStateToProps)(Landing)
+export default Landing
