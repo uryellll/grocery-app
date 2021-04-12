@@ -80,7 +80,6 @@ function Careers() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

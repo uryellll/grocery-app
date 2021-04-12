@@ -1,17 +1,16 @@
 .container {
-  height: auto;
+  min-height: 100vh;
   font-size: 25px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   text-align: center;
-  margin: 2rem;
   padding: 25px;
 }
 
 .container h1 {
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 }
 
 details {

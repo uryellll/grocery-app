@@ -21,7 +21,7 @@ const Landing = () => {
 
   useEffect(() => {
     dispatch(fetchProducts())
-  }, [])
+  })
 
   function handleClick(value) {
     dispatch(changeCategory(value))

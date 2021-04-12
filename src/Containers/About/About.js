@@ -1,5 +1,4 @@
 import React from 'react'
-import { link } from 'react-router-dom'
 import classes from './About.module.css'
 import Footer from '../../Components/Footer/Footer'
 import Navigationbar from '../../Components/NavigationBar/NavigationBar'
@@ -38,7 +37,6 @@ function About() {
           <div className={classes.img2}>2</div>
         </div>
       </div>
-      <Footer />
     </React.Fragment>
   )
 }

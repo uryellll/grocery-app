@@ -55,7 +55,6 @@ function FAQs() {
           </p>
         </details>
       </div>
-      <Footer />
     </>
   )
 }

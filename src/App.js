@@ -9,6 +9,7 @@ import NavigationBar from './Components/NavigationBar/NavigationBar'
 import ScrollToTop from './Components/ScrollToTop/scrollToTop'
 import ProductsPage from './Containers/Products/ProductsPage'
 import Login from './Containers/Login/Login'
+import Footer from './Components/Footer/Footer'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/login" exact component={Login} />
         <Route component={Error404} />
       </Switch>
+      <Footer />
     </div>
   )
 }
