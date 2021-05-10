@@ -10,6 +10,7 @@ import ScrollToTop from './Components/ScrollToTop/scrollToTop'
 import ProductsPage from './Containers/Products/ProductsPage'
 import Login from './Containers/Login/Login'
 import Footer from './Components/Footer/Footer'
+import CheckoutForm from './Containers/Checkout Form/CheckoutForm'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/careers" component={Careers} />
         <Route path="/faqs" component={FAQs} />
         <Route path="/login" exact component={Login} />
+        <Route path="/checkout" exact component={CheckoutForm} />
         <Route component={Error404} />
       </Switch>
       <Footer />

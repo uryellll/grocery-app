@@ -2,44 +2,67 @@ import * as actionTypes from './shoppingTypes'
 
 const INITIAL_STATE = {
   products: [],
-  displayedProducts: [],
   category: '',
   cart: [],
-  currentItem: null,
+  cart_id: '',
+  checkout_token: {},
+  customerInfo: {
+    firstName: '',
+    lastName: '',
+    email: '',
+  },
+  shippingDetails: {
+    shipping_name: '',
+    shipping_street: '',
+    shipping_city: '',
+    shipping_state_province: '',
+    shipping_postal_zip_code: '',
+    shipping_country: '',
+  },
+  paymentDetails: {
+    card_number: '',
+    exp_month: '',
+    exp_year: '',
+    ccv: '',
+    billing_postal_zip_code: '',
+  },
+  shipping_data: {
+    shippingCountries: {},
+    shippingSubdivisions: {},
+    shippingOptions: [],
+    shippingOption: '',
+  },
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actionTypes.ADD_TO_CART:
-      //finding item in the products array
-      const item = state.products.find((prod) => prod.id === action.payload.id)
-      //checking if the item is in the cart already
-      const inCart = state.cart.find((item) =>
-        item.id === action.payload.id ? true : false,
-      )
+    case actionTypes.RETRIEVE_CART:
       return {
-        //copy the original state of the array
         ...state,
-        cart: inCart
-          ? //if inCart is true
-            state.cart.map((item) =>
-              item.id === action.payload.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item,
-            )
-          : //if inCart is false
-            [...state.cart, { ...item, quantity: 1 }],
+        cart: action.payload.cart_items,
+        cart_id: action.payload.cart_id,
       }
     case actionTypes.REMOVE_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload.id),
       }
-    case actionTypes.ADJUST_QUANTITY:
+
+    case actionTypes.UPDATE_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      }
+    case actionTypes.EMPTY_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      }
+    case actionTypes.INCREASE_QUANTITY:
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.id === action.payload.id
+          item.product_id === action.payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         ),
@@ -49,7 +72,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cart: state.cart.map((item) =>
           item.quantity !== 0
-            ? item.id === action.payload.id
+            ? item.product_id === action.payload.id
               ? { ...item, quantity: item.quantity - 1 }
               : item
             : item,
@@ -60,34 +83,30 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         category: action.payload,
       }
-
     case actionTypes.SET_PRODUCTS:
       return {
         ...state,
         products: action.payload,
       }
 
-    case actionTypes.LOAD_CURRENT_ITEM:
+    case actionTypes.SET_CUSTOMER_INFO:
       return {
         ...state,
-        currentItem: action.payload,
+        customerInfo: {
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          email: action.payload.email,
+        },
       }
-
-    case actionTypes.FILTER_PRODUCTS:
-      if (action.payload === '') {
-        return {
-          ...state,
-          displayedProducts: state.products,
-        }
-      } else {
-        const filteredProducts = state.products.filter(
-          (item) => item.type === action.payload,
-        )
-        console.log(filteredProducts)
-        return {
-          ...state,
-          displayedProducts: filteredProducts,
-        }
+    case actionTypes.SET_PAYMENT_DETAILS:
+      return {
+        ...state,
+        paymentDetails: {
+          card_number: action.payload.card_number,
+          exp_month: action.payload.exp_month,
+          exp_year: action.payload.exp_year,
+          ccv: action.payload.ccv,
+        },
       }
 
     default:

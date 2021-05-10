@@ -1,0 +1,19 @@
+.payment-information-container {
+  border: 1px solid red;
+  width: 500px;
+  min-height: 500px;
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.payment-information-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.payment-information-container form h4 {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}

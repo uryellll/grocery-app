@@ -2,55 +2,64 @@ import classes from './cartItems.module.css'
 import React from 'react'
 import {
   removeFromCart,
-  adjustQuantity,
+  increaseQuantity,
   reduceQuantity,
 } from '../../redux/Shopping/shoppingActions'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const CartItems = ({
-  cartItemData,
-  adjustQuantity,
-  removeFromCart,
-  reduceQuantity,
-}) => {
+const CartItems = ({ cartItem }) => {
+  const dispatch = useDispatch()
+
   function checkQuantity() {
-    if (cartItemData.quantity === 1) {
-      removeFromCart(cartItemData.id)
+    if (cartItem.quantity === 1) {
+      dispatch(removeFromCart(cartItem.id))
     } else {
-      reduceQuantity(cartItemData.id)
+      dispatch(
+        reduceQuantity(cartItem.product_id, cartItem.id, cartItem.quantity - 1),
+      )
     }
+  }
+
+  function removeItemFromCart(id) {
+    dispatch(removeFromCart(id))
   }
 
   return (
     <div className={classes.container}>
       <div className={classes.cartItemDetails}>
-        <p>{cartItemData.name}</p>
-        <p>{cartItemData.price}</p>
+        <p>{cartItem.product_name}</p>
+        <p>{cartItem.price.raw}</p>
       </div>
       <div className={classes.adjQuantity}>
         <button
           onClick={() => {
-            adjustQuantity(cartItemData.id)
+            dispatch(
+              increaseQuantity(
+                cartItem.product_id,
+                cartItem.id,
+                cartItem.quantity + 1,
+              ),
+            )
           }}
         >
           +
         </button>
-        <p>{cartItemData.quantity}</p>
+        <p>{cartItem.quantity}</p>
         <button
           onClick={() => {
-            checkQuantity(cartItemData.id)
+            checkQuantity()
           }}
         >
           -
         </button>
       </div>
       <div className={classes.SubTotal}>
-        <p>{cartItemData.quantity * cartItemData.price}</p>
+        <p>{cartItem.quantity * cartItem.price.raw}</p>
       </div>
       <button
         className={classes.CartRemoveBtn}
         onClick={() => {
-          removeFromCart(cartItemData.id)
+          removeItemFromCart(cartItem.id)
         }}
       >
         Remove
@@ -59,12 +68,4 @@ const CartItems = ({
   )
 }
 
-export const mapDispatchToProps = (dispatch) => {
-  return {
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-    adjustQuantity: (id) => dispatch(adjustQuantity(id)),
-    reduceQuantity: (id) => dispatch(reduceQuantity(id)),
-  }
-}
-
-export default connect(null, mapDispatchToProps)(CartItems)
+export default CartItems

@@ -1,49 +1,89 @@
 import * as actionTypes from './shoppingTypes'
-import axios from 'axios'
+import { commerce } from '../../lib/commerce'
 
-export const addToCart = (itemID) => {
-  return {
-    type: actionTypes.ADD_TO_CART,
-    payload: {
-      id: itemID,
-    },
-  }
+export const fetchProducts = () => async (dispatch, getState) => {
+  const { data } = await commerce.products.list()
+  dispatch(setProducts(data))
 }
 
-export const removeFromCart = (itemID) => {
-  return {
+export const addToCart = (productId, quantity) => (dispatch) => {
+  commerce.cart
+    .add(productId, quantity)
+    .then((item) => {
+      console.log(item)
+    })
+    .catch((error) => {
+      console.error('There was an error adding the item to the cart', error)
+    })
+}
+
+export const retrieveCart = () => async (dispatch) => {
+  const { id, line_items } = await commerce.cart.retrieve()
+  return dispatch({
+    type: actionTypes.RETRIEVE_CART,
+    payload: {
+      cart_items: line_items,
+      cart_id: id,
+    },
+  })
+}
+
+export const removeFromCart = (itemID) => (dispatch) => {
+  commerce.cart
+    .remove(itemID)
+    .then((resp) => {
+      dispatch(updateCart(resp.cart.line_items))
+    })
+    .catch((error) => {
+      console.error('There was an error removing the item from the cart', error)
+    })
+  return dispatch({
     type: actionTypes.REMOVE_FROM_CART,
     payload: {
       id: itemID,
     },
+  })
+}
+
+export const updateCart = (line_items) => {
+  return {
+    type: actionTypes.UPDATE_CART,
+    payload: line_items,
   }
 }
 
-export const adjustQuantity = (itemID, value) => {
-  return {
-    type: actionTypes.ADJUST_QUANTITY,
+export const increaseQuantity = (cartId, id, quantity) => (dispatch) => {
+  commerce.cart.update(id, { quantity }).then((res) => {
+    console.log(res)
+  })
+  return dispatch({
+    type: actionTypes.INCREASE_QUANTITY,
     payload: {
-      id: itemID,
-      quantity: value,
+      id: cartId,
+      quantity: quantity,
     },
-  }
+  })
 }
 
-export const reduceQuantity = (itemID, value) => {
-  return {
+export const emptyCart = () => (dispatch) => {
+  commerce.cart.empty()
+  return dispatch({
+    type: actionTypes.EMPTY_CART,
+    payload: [],
+  })
+}
+
+export const reduceQuantity = (cartId, id, quantity) => (dispatch) => {
+  commerce.cart.update(id, { quantity }).then((res) => {
+    console.log(res)
+  })
+  return dispatch({
     type: actionTypes.REDUCE_QUANTITY,
     payload: {
-      id: itemID,
-      quantity: value,
+      id: cartId,
+      quantity: quantity,
     },
-  }
-}
-
-export const loadCurrentItem = (item) => {
-  return {
-    type: actionTypes.LOAD_CURRENT_ITEM,
-    payload: item,
-  }
+  })
 }
 
 export const searchItem = (value) => {
@@ -74,23 +114,32 @@ export const filterProducts = (value) => {
   }
 }
 
-export const fetchProducts = () => (dispatch, getState) => {
-  axios
-    .get(process.env.REACT_APP_GROCERY_API)
-    .then((res) => {
-      console.log(res.data)
-      const products = res.data
-      dispatch(setProducts(products))
-      dispatch(filterProducts(''))
-    })
-    .catch((err) => {
-      console.log(err.message)
-    })
-}
-
 export const setProducts = (value) => {
   return {
     type: actionTypes.SET_PRODUCTS,
     payload: value,
+  }
+}
+
+export const setCustomerInfo = (firstName, lastName, email) => {
+  return {
+    type: actionTypes.SET_CUSTOMER_INFO,
+    payload: {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    },
+  }
+}
+
+export const setPaymentDetails = (paymentDetails) => {
+  return {
+    type: actionTypes.SET_PAYMENT_DETAILS,
+    payload: {
+      card_number: paymentDetails.card_number,
+      exp_month: paymentDetails.exp_month,
+      exp_year: paymentDetails.exp_year,
+      ccv: paymentDetails.ccv,
+    },
   }
 }

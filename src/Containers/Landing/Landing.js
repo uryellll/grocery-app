@@ -23,11 +23,6 @@ const Landing = () => {
     dispatch(fetchProducts())
   })
 
-  function handleClick(value) {
-    dispatch(changeCategory(value))
-    dispatch(filterProducts(value))
-  }
-
   return (
     <div className={classes.wrapper}>
       <section className={classes.banner}>
@@ -39,7 +34,7 @@ const Landing = () => {
             Dignissimos amet at totam recusandae sit illum ullam nemo nostrum
             exercitationem.
           </p>
-          <Link to="/products" onClick={() => handleClick('')}>
+          <Link to="/products">
             <button>Shop now</button>
           </Link>
         </div>
@@ -48,44 +43,28 @@ const Landing = () => {
         <h1>Our products</h1>
         <div className={classes.productsWrapper}>
           <div className={classes.productCard}>
-            <Link
-              to="/products"
-              className={classes.productBtn}
-              onClick={() => handleClick('fruit')}
-            >
+            <Link to="/products" className={classes.productBtn}>
               Shop fruits
             </Link>
             <div className={classes.productCover}></div>
             <img src={fruits} alt="Images of fruits" />
           </div>
           <div className={classes.productCard}>
-            <Link
-              to="/products"
-              className={classes.productBtn}
-              onClick={() => handleClick('spice')}
-            >
+            <Link to="/products" className={classes.productBtn}>
               Shop spices
             </Link>
             <div className={classes.productCover}></div>
             <img src={spices} alt="Images of spices" />
           </div>
           <div className={classes.productCard}>
-            <Link
-              to="/products"
-              className={classes.productBtn}
-              onClick={() => handleClick('vegetable')}
-            >
+            <Link to="/products" className={classes.productBtn}>
               Shop Vegetables
             </Link>
             <div className={classes.productCover}></div>
             <img src={vegetables} alt="Images of vegetables" />
           </div>
           <div className={classes.productCard}>
-            <Link
-              to="/products"
-              className={classes.productBtn}
-              onClick={() => handleClick('grain')}
-            >
+            <Link to="/products" className={classes.productBtn}>
               Shop grains
             </Link>
             <div className={classes.productCover}></div>

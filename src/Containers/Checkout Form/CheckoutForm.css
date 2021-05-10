@@ -1,0 +1,67 @@
+.checkout-form-container {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4rem;
+}
+
+.customer-information,
+.shipping-details,
+.payment-information {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout__btn-confirm {
+  height: 4rem;
+  color: #fff;
+  background: #75cfb8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.progress-bar,
+.progress-circle {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  height: 2rem;
+  width: 500px;
+}
+
+.progress-circle {
+  height: 100%;
+  width: calc(500px / 4);
+  border: 1px solid red;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-circle.active {
+  background: #75cfb8;
+}
+
+/* FORM GLOBAL STYLES*/
+
+.checkout__label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.checkout__input {
+  height: 3rem;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.checkout__btn-confirm {
+  height: 3rem;
+  margin-top: 2rem;
+}

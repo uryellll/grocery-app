@@ -1,6 +1,7 @@
 .shoppingCartWrapper {
   padding-top: 4rem;
   padding-left: 1rem;
+  min-height: 100vh;
 }
 
 b {
@@ -54,33 +55,33 @@ b {
   width: 5rem;
 }
 
-.cartSummaryContainer {
-  width: 100%;
-}
-
-details {
-  width: 100%;
-  border-radius: 4px;
-  padding: 0.5em 0.5em 0;
-}
-
-details[open] {
-  display: flex;
-  flex-direction: row;
-  padding: 0.5em;
-}
-
-details[open] summary {
-  border-bottom: 1px solid #aaa;
-  margin-bottom: 0.5em;
-}
-
-.cartSummary div {
-  display: flex;
-  justify-content: space-between;
-}
-
 .productList {
   display: flex;
   flex-direction: column;
+}
+
+.checkout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.checkout button {
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.emptyCartBtn {
+  background-color: red;
+  color: #fff;
+}
+
+.checkouttBtn {
+  background-color: #75cfb8;
+  color: #fff;
 }
