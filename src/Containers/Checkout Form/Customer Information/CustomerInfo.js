@@ -1,30 +1,37 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCustomerInfo } from '../../../redux/Shopping/shoppingActions'
+import { setCustomerInfo } from '../../../redux/Shopping/Actions/checkOutActions'
 import './CustomerInfo.css'
 
 function CustomerInfo({ nextPage, setNextPage }) {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
+  const [customerInfo, setCustomerInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  })
   const dispatch = useDispatch()
 
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value)
-  }
-  function handleLastNameChange(e) {
-    setLastName(e.target.value)
-  }
-  function handleEmailChange(e) {
-    setEmail(e.target.value)
+  function handleFormChange(e) {
+    setCustomerInfo({
+      ...customerInfo,
+      [e.target.name]: e.target.value,
+    })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(setCustomerInfo(firstName, lastName, email))
-    setFirstName('')
-    setLastName('')
-    setEmail('')
+    dispatch(
+      setCustomerInfo(
+        customerInfo.firstName,
+        customerInfo.lastName,
+        customerInfo.email,
+      ),
+    )
+    setCustomerInfo({
+      firstName: '',
+      lastName: '',
+      email: '',
+    })
     setNextPage(nextPage + 1)
   }
 
@@ -38,10 +45,10 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={firstName}
+          value={customerInfo.firstName}
           name="firstName"
           placeholder="Enter your first name"
-          onChange={handleFirstNameChange}
+          onChange={handleFormChange}
           required
         />
         <label className="checkout__label" htmlFor="lastName">
@@ -50,10 +57,10 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={lastName}
+          value={customerInfo.lastName}
           name="lastName"
           placeholder="Enter your last name"
-          onChange={handleLastNameChange}
+          onChange={handleFormChange}
           required
         />
         <label className="checkout__label" htmlFor="email">
@@ -62,10 +69,10 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={email}
+          value={customerInfo.email}
           name="email"
           placeholder="Enter your email"
-          onChange={handleEmailChange}
+          onChange={handleFormChange}
           required
         />{' '}
         <button type="submit" className="checkout__btn-confirm">

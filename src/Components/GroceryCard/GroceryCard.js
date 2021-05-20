@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classes from './GroceryCard.module.css'
 import { Modal, Button } from '@material-ui/core'
-import { addToCart } from '../../redux/Shopping/shoppingActions'
+import { addToCart } from '../../redux/Shopping/Actions/shoppingActions'
 import { useDispatch } from 'react-redux'
 
 const GroceryCard = ({ productData }) => {

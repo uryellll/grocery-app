@@ -1,44 +1,59 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { emptyCart } from '../../../redux/Shopping/shoppingActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  setBillingDetails,
+  setFulfillmentData,
+  setShippingDetails,
+} from '../../../redux/Shopping/Actions/checkOutActions'
+import { fetchShippingOptions } from '../../../redux/Shopping/Actions/shoppingActions'
+
 import './ShippingForm.css'
 
 function Shipping({ nextPage, setNextPage }) {
   const dispatch = useDispatch()
+  const { shipping_subdivisions, shipping_options } = useSelector(
+    (state) => state.shop.shipping_data,
+  )
   const [shippingInfo, setShippingInfo] = useState({
     shippingName: '',
     shippingStreet: '',
     shippingCity: '',
     shippingPostalZipCode: '',
+    shippingStateProvince: '',
+    shippingOption: { id: '' },
   })
 
-  function handleShippingNameChange(e) {
-    setShippingInfo({ ...shippingInfo, shippingName: e.target.value })
-  }
-
-  function handleShippingStreetChange(e) {
-    setShippingInfo({ ...shippingInfo, shippingStreet: e.target.value })
-  }
-
-  function handleShippingCityChange(e) {
-    setShippingInfo({ ...shippingInfo, shippingCity: e.target.value })
-  }
-
-  function handleShippingPostalZipCodeChange(e) {
-    setShippingInfo({ ...shippingInfo, shippingPostalZipCode: e.target.value })
-  }
+  const [shippingHelpers, setShippingHelpers] = useState({
+    shippingStateProvince: {},
+    shippingOptions: [],
+  })
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(emptyCart())
+    dispatch(setShippingDetails(shippingInfo))
+    dispatch(setBillingDetails(shippingInfo))
+    dispatch(setFulfillmentData(shippingInfo.shippingOption))
     setShippingInfo({
       ...shippingInfo,
       shippingName: '',
       shippingStreet: '',
       shippingCity: '',
       shippingPostalZipCode: '',
+      shippingStateProvince: '',
     })
     setNextPage(nextPage + 1)
+  }
+
+  function fetchShipping(e) {
+    e.preventDefault()
+    const { name, value } = e.target
+    setShippingHelpers({ ...shippingHelpers, [name]: value })
+    dispatch(fetchShippingOptions(value))
+  }
+
+  function handleFormChange(e) {
+    const { name, value } = e.target
+    setShippingInfo({ ...shippingInfo, [name]: value })
   }
 
   return (
@@ -52,7 +67,7 @@ function Shipping({ nextPage, setNextPage }) {
           className="checkout__input"
           type="text"
           value={shippingInfo.shippingName}
-          onChange={handleShippingNameChange}
+          onChange={handleFormChange}
           name="shippingName"
           placeholder="Enter your shipping full name"
           required
@@ -64,7 +79,7 @@ function Shipping({ nextPage, setNextPage }) {
           className="checkout__input"
           type="text"
           value={shippingInfo.shippingStreet}
-          onChange={handleShippingStreetChange}
+          onChange={handleFormChange}
           name="shippingStreet"
           placeholder="Enter your street address"
           required
@@ -76,7 +91,7 @@ function Shipping({ nextPage, setNextPage }) {
           className="checkout__input"
           type="text"
           value={shippingInfo.shippingCity}
-          onChange={handleShippingCityChange}
+          onChange={handleFormChange}
           name="shippingCity"
           placeholder="Enter your city"
           required
@@ -88,11 +103,57 @@ function Shipping({ nextPage, setNextPage }) {
           className="checkout__input"
           type="text"
           value={shippingInfo.shippingPostalZipCode}
-          onChange={handleShippingPostalZipCodeChange}
+          onChange={handleFormChange}
           name="shippingPostalZipCode"
           placeholder="Enter your postal/zip code"
           required
         />
+        <label className="checkout__label" htmlFor="shippingStateProvince">
+          State/province
+        </label>
+        <select
+          value={shippingHelpers.shippingStateProvince}
+          name="shippingStateProvince"
+          onChange={fetchShipping}
+          className="checkout__select"
+        >
+          <option className="checkout__option" disabled>
+            State/province
+          </option>
+          {Object.keys(shipping_subdivisions).map((index) => {
+            return (
+              <option value={index} key={index}>
+                {shipping_subdivisions[index]}
+              </option>
+            )
+          })}
+          ;
+        </select>
+
+        <label className="checkout__label" htmlFor="shippingOption">
+          Shipping method
+        </label>
+        <select
+          value={shippingInfo.shippingOption.id}
+          name="shippingOption"
+          onChange={handleFormChange}
+          className="checkout__select"
+        >
+          <option className="checkout__select-option" disabled>
+            Select a shipping method
+          </option>
+          {shipping_options.map((method, index) => {
+            return (
+              <option
+                className="checkout__select-option"
+                value={method.id}
+                key={index}
+              >{`${method.description} - $${method.price.formatted_with_code}`}</option>
+            )
+          })}
+          ;
+        </select>
+
         <button type="submit" className="checkout__btn-confirm">
           Confirm Order
         </button>

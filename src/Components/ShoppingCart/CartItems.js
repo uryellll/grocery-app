@@ -4,7 +4,7 @@ import {
   removeFromCart,
   increaseQuantity,
   reduceQuantity,
-} from '../../redux/Shopping/shoppingActions'
+} from '../../redux/Shopping/Actions/shoppingActions'
 import { useDispatch } from 'react-redux'
 
 const CartItems = ({ cartItem }) => {

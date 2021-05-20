@@ -24,8 +24,8 @@ const App = () => {
         <Route path="/about-us" component={About} />
         <Route path="/careers" component={Careers} />
         <Route path="/faqs" component={FAQs} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/checkout" exact component={CheckoutForm} />
+        <Route path="/login" component={Login} />
+        <Route path="/checkout" component={CheckoutForm} />
         <Route component={Error404} />
       </Switch>
       <Footer />

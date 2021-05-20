@@ -4,20 +4,21 @@ import {
   changeCategory,
   fetchProducts,
   filterProducts,
-} from '../../redux/Shopping/shoppingActions'
-import { useSelector } from 'react-redux'
+} from '../../redux/Shopping/Actions/shoppingActions'
+import { useSelector, useDispatch } from 'react-redux'
 import Products from './Products/Products'
 import Pagination from '../../Components/Pagination/Pagination'
 
 const ProductsPage = () => {
+  const dispatch = useDispatch()
   const products = useSelector((state) => state.shop.products)
   const category = useSelector((state) => state.shop.category)
   const [currentPage, setCurrentPage] = useState(1)
   const [productsPerPage] = useState(10)
 
-  useEffect(() => {
-    fetchProducts()
-  })
+  if (products.length === 0) {
+    dispatch(fetchProducts())
+  }
 
   function handlePageNumber(number) {
     setCurrentPage(number)

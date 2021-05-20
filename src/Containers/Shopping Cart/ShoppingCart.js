@@ -3,7 +3,11 @@ import classes from './shoppingCart.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartItems from '../../Components/ShoppingCart/CartItems'
-import { emptyCart, retrieveCart } from '../../redux/Shopping/shoppingActions'
+import {
+  emptyCart,
+  retrieveCart,
+  getCheckoutToken,
+} from '../../redux/Shopping/Actions/shoppingActions'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
@@ -39,6 +43,7 @@ const ShoppingCart = () => {
   //     </div>
   //   )
   // })
+
   if (Object.keys(cart).length === 0) {
     return (
       <div className={classes.shoppingCartWrapper}>
@@ -80,7 +85,12 @@ const ShoppingCart = () => {
               Empty Cart
             </button>
             <Link to="/checkout">
-              <button className={classes.checkouttBtn}>Checkout</button>
+              <button
+                className={classes.checkouttBtn}
+                onClick={() => dispatch(getCheckoutToken())}
+              >
+                Checkout
+              </button>
             </Link>
           </div>
         </div>

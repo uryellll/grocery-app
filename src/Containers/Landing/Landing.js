@@ -6,7 +6,7 @@ import {
   changeCategory,
   filterProducts,
   fetchProducts,
-} from '../../redux/Shopping/shoppingActions'
+} from '../../redux/Shopping/Actions/shoppingActions'
 
 import delivery1 from '../../Assets/card/delivery1.svg'
 import delivery2 from '../../Assets/card/delivery2.svg'

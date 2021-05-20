@@ -1,29 +1,21 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setPaymentDetails } from '../../../redux/Shopping/shoppingActions'
+import { setPaymentDetails } from '../../../redux/Shopping/Actions/shoppingActions'
 import './PaymentForm.css'
 
 function Payment({ nextPage, setNextPage }) {
   const [paymentInfo, setPaymentInfo] = useState({
-    card_number: '',
-    exp_month: '',
-    exp_year: '',
+    cardNumber: '',
+    expMonth: '',
+    expYear: '',
     ccv: '',
   })
 
   const dispatch = useDispatch()
 
-  function handleCardNumberChange(e) {
-    setPaymentInfo({ ...paymentInfo, card_number: e.target.value })
-  }
-  function handleExpMonthChange(e) {
-    setPaymentInfo({ ...paymentInfo, exp_month: e.target.value })
-  }
-  function handleExpYearChange(e) {
-    setPaymentInfo({ ...paymentInfo, exp_year: e.target.value })
-  }
-  function handleccvChange(e) {
-    setPaymentInfo({ ...paymentInfo, ccv: e.target.value })
+  function handleFormChange(e) {
+    const { name, value } = e.target
+    setPaymentInfo({ ...paymentInfo, [name]: value })
   }
 
   function handleSubmit(e) {
@@ -31,9 +23,9 @@ function Payment({ nextPage, setNextPage }) {
     dispatch(setPaymentDetails(paymentInfo))
     setPaymentInfo({
       ...paymentInfo,
-      card_number: '',
-      exp_month: '',
-      exp_year: '',
+      cardNumber: '',
+      expMonth: '',
+      expYear: '',
       ccv: '',
     })
     setNextPage(nextPage + 1)
@@ -41,7 +33,7 @@ function Payment({ nextPage, setNextPage }) {
 
   return (
     <div className="payment-information-container">
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <div className="payment-information">
           <h4 className="checkout__subheading">Payment information</h4>
 
@@ -51,9 +43,9 @@ function Payment({ nextPage, setNextPage }) {
           <input
             className="checkout__input"
             type="text"
-            name="cardNum"
+            name="cardNumber"
             value={paymentInfo.card_number}
-            onChange={handleCardNumberChange}
+            onChange={handleFormChange}
             placeholder="Enter your card number"
           />
 
@@ -65,7 +57,7 @@ function Payment({ nextPage, setNextPage }) {
             type="text"
             name="expMonth"
             value={paymentInfo.exp_month}
-            onChange={handleExpMonthChange}
+            onChange={handleFormChange}
             placeholder="Card expiry month"
           />
 
@@ -77,7 +69,7 @@ function Payment({ nextPage, setNextPage }) {
             type="text"
             name="expYear"
             value={paymentInfo.exp_year}
-            onChange={handleExpYearChange}
+            onChange={handleFormChange}
             placeholder="Card expiry year"
           />
 
@@ -89,7 +81,7 @@ function Payment({ nextPage, setNextPage }) {
             type="text"
             name="ccv"
             value={paymentInfo.ccv}
-            onChange={handleccvChange}
+            onChange={handleFormChange}
             placeholder="CCV (3 digits)"
           />
         </div>
