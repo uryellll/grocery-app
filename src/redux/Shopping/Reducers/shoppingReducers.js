@@ -6,11 +6,6 @@ const INITIAL_STATE = {
   cart: {},
   cart_id: '',
   checkout_token: {},
-  customer_info: {
-    first_name: '',
-    last_name: '',
-    email: '',
-  },
   shipping_details: {
     shipping_name: '',
     shipping_street: '',
@@ -18,18 +13,6 @@ const INITIAL_STATE = {
     shipping_state_province: '',
     shipping_postal_zip_code: '',
     shipping_country: 'PH',
-  },
-  payment_details: {
-    card_number: '',
-    exp_month: '',
-    exp_year: '',
-    ccv: '',
-    billing_postal_zip_code: '',
-  },
-  shipping_data: {
-    shipping_subdivisions: [],
-    shipping_options: [],
-    shipping_option: '',
   },
 }
 
@@ -86,38 +69,11 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         products: action.payload,
       }
-    case actionTypes.SET_CUSTOMER_INFO:
-      return {
-        ...state,
-        customerInfo: {
-          first_name: action.payload.firstName,
-          last_name: action.payload.lastName,
-          email: action.payload.email,
-        },
-      }
+
     case actionTypes.SET_CHECKOUT_TOKEN:
       return {
         ...state,
         checkout_token: action.payload,
-      }
-    case actionTypes.SET_PAYMENT_DETAILS:
-      return {
-        ...state,
-        paymentDetails: {
-          card_number: action.payload.card_number,
-          exp_month: action.payload.exp_month,
-          exp_year: action.payload.exp_year,
-          ccv: action.payload.ccv,
-        },
-      }
-
-    case actionTypes.SET_SUBDIVISIONS:
-      return {
-        ...state,
-        shipping_data: {
-          ...state.shipping_data,
-          shipping_subdivisions: action.payload,
-        },
       }
     case actionTypes.SET_SHIPPING_OPTIONS:
       return {

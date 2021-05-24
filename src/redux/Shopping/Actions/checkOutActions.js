@@ -2,10 +2,10 @@ import * as actionTypes from '../ActionTypes/CheckoutActionTypes'
 import { commerce } from '../../../lib/commerce'
 
 export const setCartCheckOutItems = () => (dispatch, getState) => {
-  const line_items = getState().shop.cart
+  const { cart } = getState().shop
   return dispatch({
     type: actionTypes.SET_CART_ITEMS,
-    payload: line_items,
+    payload: cart,
   })
 }
 
@@ -46,6 +46,18 @@ export const setBillingDetails = (shippingInfo) => {
   }
 }
 
+export const setPaymentDetails = (paymentInfo) => {
+  return {
+    type: actionTypes.SET_PAYMENT_DETAILS,
+    payload: {
+      number: paymentInfo.cardnumber,
+      expiry_month: paymentInfo.expiry_month,
+      expiry_year: paymentInfo.expiry_year,
+      ccv: paymentInfo.ccv,
+    },
+  }
+}
+
 export const setPaymentMethod = (gateway, card_token) => {
   return {
     type: actionTypes.SET_PAYMENT_METHOD,
@@ -71,55 +83,58 @@ export const checkOutCapture = () => async (dispatch, getState) => {
       billing: billing,
       payment: payment,
     })
-    .then((response) => console.log(response))
-  return dispatch({
-    type: actionTypes.CLEAR_CHECKOUT,
-    payload: {
-      line_items: {
-        item_7RyWOwmK5nEa2V: {
-          quantity: 1,
-          variants: {
-            vgrp_p6dP5g0M4ln7kA: 'optn_DeN1ql93doz3ym',
-          },
-        },
-      },
-      customer: {
-        firstname: '',
-        lastname: '',
-        email: '',
-      },
-      shipping: {
-        name: '',
-        street: '',
-        town_city: '',
-        county_state: '',
-        postal_zip_code: '',
-        country: 'PH',
-      },
-      fulfillment: {
-        shipping_method: '',
-      },
-      billing: {
-        name: '',
-        street: '',
-        town_city: '',
-        county_state: '',
-        postal_zip_code: '',
-        country: 'PH',
-      },
-      payment: {
-        gateway: '',
-        card: {
-          token: '',
-        },
-      },
-    },
-  })
+    .then((response) => {
+      console.log(response)
+    })
 }
 
 export const setFulfillmentData = (shippingOption) => {
   return {
-    tpye: actionTypes.SET_SHIPPING_FULFILLMENT_DATA,
-    payload: shippingOption.id,
+    type: actionTypes.SET_SHIPPING_FULFILLMENT_DATA,
+    payload: shippingOption,
   }
+}
+
+export const fetchShippingOptions =
+  (stateProvince) => async (dispatch, getState) => {
+    const {
+      checkout_token: { id },
+    } = getState().shop
+
+    await commerce.checkout
+      .getShippingOptions(id, {
+        country: 'PH',
+        region: stateProvince || '00',
+      })
+      .then((options) => {
+        const shippingOption = options[0] || null
+        return dispatch(
+          {
+            type: actionTypes.SET_SHIPPING_OPTIONS,
+            payload: options,
+          },
+          {
+            type: actionTypes.SET_SHIPPING_FULFILLMENT_DATA,
+            payload: shippingOption,
+          },
+        )
+      })
+      .catch((error) => {
+        console.log('There was an error fetching the shipping methods', error)
+      })
+  }
+
+export const setSubdivisions = () => async (dispatch, getState) => {
+  const { shipping_country } = getState().shop.shipping_details
+  await commerce.services
+    .localeListSubdivisions(shipping_country)
+    .then((subdivisions) => {
+      return dispatch({
+        type: actionTypes.SET_SUBDIVISIONS,
+        payload: subdivisions.subdivisions,
+      })
+    })
+    .catch((error) => {
+      console.log('There was an error fetching the subdivisions', error)
+    })
 }

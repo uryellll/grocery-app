@@ -1,14 +1,7 @@
 import * as actionTypes from '../ActionTypes/CheckoutActionTypes'
 
 const INITIAL_STATE = {
-  line_items: {
-    item_7RyWOwmK5nEa2V: {
-      quantity: 1,
-      variants: {
-        vgrp_p6dP5g0M4ln7kA: 'optn_DeN1ql93doz3ym',
-      },
-    },
-  },
+  line_items: {},
   customer: {
     firstname: '',
     lastname: '',
@@ -36,13 +29,20 @@ const INITIAL_STATE = {
   payment: {
     gateway: '',
     card: {
-      token: '',
+      number: '',
+      expiry_month: '',
+      expiry_year: '',
+      ccv: '',
     },
+  },
+  shipping_helpers: {
+    shipping_subdivisions: [],
+    shipping_options: [],
   },
 }
 
 const checkOutReducer = (state = INITIAL_STATE, action) => {
-  switch (action.Type) {
+  switch (action.type) {
     case actionTypes.SET_CART_ITEMS:
       return {
         ...state,
@@ -51,19 +51,49 @@ const checkOutReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.SET_CUSTOMER_INFO:
       return {
         ...state,
-        customer: action.payload,
+        customer: {
+          ...state.customer,
+          firstname: action.payload.firstname,
+          lastname: action.payload.lastname,
+          email: action.payload.email,
+        },
       }
     case actionTypes.SET_SHIPPING_DETAILS:
       return {
         ...state,
         shipping: action.payload,
+      }
+
+    case actionTypes.SET_BILLING_DETAILS:
+      return {
+        ...state,
         billing: action.payload,
       }
 
     case actionTypes.SET_SHIPPING_FULFILLMENT_DATA:
+      if (action.payload !== ('' || null)) {
+        return {
+          ...state,
+          fulfillment: {
+            ...state.fulfillment,
+            shipping_method: action.payload,
+          },
+        }
+      }
+
+    case actionTypes.SET_PAYMENT_DETAILS:
       return {
         ...state,
-        fulfillment: action.payload,
+        payment: {
+          ...state.payment,
+          card: {
+            ...state.payment.card,
+            number: action.payload.number,
+            expiry_month: action.payload.expiry_month,
+            expiry_year: action.payload.expiry_year,
+            ccv: action.payload.ccv,
+          },
+        },
       }
 
     case actionTypes.SET_PAYMENT_METHOD:
@@ -75,6 +105,22 @@ const checkOutReducer = (state = INITIAL_STATE, action) => {
     case actionTypes.CLEAR_CHECKOUT:
       return {
         ...state,
+      }
+    case actionTypes.SET_SHIPPING_OPTIONS:
+      return {
+        ...state,
+        shipping_helpers: {
+          ...state.shipping_helpers,
+          shipping_options: action.payload,
+        },
+      }
+    case actionTypes.SET_SUBDIVISIONS:
+      return {
+        ...state,
+        shipping_helpers: {
+          ...state.shipping_helpers,
+          shipping_subdivisions: action.payload,
+        },
       }
     default:
       return state

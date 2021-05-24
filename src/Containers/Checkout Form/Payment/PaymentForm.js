@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setPaymentDetails } from '../../../redux/Shopping/Actions/shoppingActions'
+import { setPaymentDetails } from '../../../redux/Shopping/Actions/checkOutActions'
 import './PaymentForm.css'
 
 function Payment({ nextPage, setNextPage }) {
+  const dispatch = useDispatch()
   const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: '',
-    expMonth: '',
-    expYear: '',
+    cardnumber: '',
+    expiry_month: '',
+    expiry_year: '',
     ccv: '',
   })
-
-  const dispatch = useDispatch()
 
   function handleFormChange(e) {
     const { name, value } = e.target
@@ -23,9 +22,9 @@ function Payment({ nextPage, setNextPage }) {
     dispatch(setPaymentDetails(paymentInfo))
     setPaymentInfo({
       ...paymentInfo,
-      cardNumber: '',
-      expMonth: '',
-      expYear: '',
+      cardnumber: '',
+      expiry_month: '',
+      expiry_year: '',
       ccv: '',
     })
     setNextPage(nextPage + 1)
@@ -43,7 +42,7 @@ function Payment({ nextPage, setNextPage }) {
           <input
             className="checkout__input"
             type="text"
-            name="cardNumber"
+            name="cardnumber"
             value={paymentInfo.card_number}
             onChange={handleFormChange}
             placeholder="Enter your card number"
@@ -55,8 +54,8 @@ function Payment({ nextPage, setNextPage }) {
           <input
             className="checkout__input"
             type="text"
-            name="expMonth"
-            value={paymentInfo.exp_month}
+            name="expiry_month"
+            value={paymentInfo.expiry_month}
             onChange={handleFormChange}
             placeholder="Card expiry month"
           />
@@ -67,8 +66,8 @@ function Payment({ nextPage, setNextPage }) {
           <input
             className="checkout__input"
             type="text"
-            name="expYear"
-            value={paymentInfo.exp_year}
+            name="expiry_year"
+            value={paymentInfo.expiry_year}
             onChange={handleFormChange}
             placeholder="Card expiry year"
           />
@@ -86,7 +85,7 @@ function Payment({ nextPage, setNextPage }) {
           />
         </div>
         <button type="submit" className="checkout__btn-confirm">
-          Submit
+          Next
         </button>
       </form>
     </div>

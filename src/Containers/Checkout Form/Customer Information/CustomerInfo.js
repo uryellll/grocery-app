@@ -4,7 +4,7 @@ import { setCustomerInfo } from '../../../redux/Shopping/Actions/checkOutActions
 import './CustomerInfo.css'
 
 function CustomerInfo({ nextPage, setNextPage }) {
-  const [customerInfo, setCustomerInfo] = useState({
+  const [customerInformation, setCustomerInformation] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -12,8 +12,8 @@ function CustomerInfo({ nextPage, setNextPage }) {
   const dispatch = useDispatch()
 
   function handleFormChange(e) {
-    setCustomerInfo({
-      ...customerInfo,
+    setCustomerInformation({
+      ...customerInformation,
       [e.target.name]: e.target.value,
     })
   }
@@ -22,12 +22,12 @@ function CustomerInfo({ nextPage, setNextPage }) {
     e.preventDefault()
     dispatch(
       setCustomerInfo(
-        customerInfo.firstName,
-        customerInfo.lastName,
-        customerInfo.email,
+        customerInformation.firstName,
+        customerInformation.lastName,
+        customerInformation.email,
       ),
     )
-    setCustomerInfo({
+    setCustomerInformation({
       firstName: '',
       lastName: '',
       email: '',
@@ -45,7 +45,7 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={customerInfo.firstName}
+          value={customerInformation.firstName}
           name="firstName"
           placeholder="Enter your first name"
           onChange={handleFormChange}
@@ -57,7 +57,7 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={customerInfo.lastName}
+          value={customerInformation.lastName}
           name="lastName"
           placeholder="Enter your last name"
           onChange={handleFormChange}
@@ -69,14 +69,14 @@ function CustomerInfo({ nextPage, setNextPage }) {
         <input
           className="checkout__input"
           type="text"
-          value={customerInfo.email}
+          value={customerInformation.email}
           name="email"
           placeholder="Enter your email"
           onChange={handleFormChange}
           required
         />{' '}
         <button type="submit" className="checkout__btn-confirm">
-          Submit
+          Next
         </button>
       </form>
     </div>

@@ -3,6 +3,7 @@ import './CheckoutForm.css'
 import CustomerInfo from './Customer Information/CustomerInfo'
 import PaymentForm from './Payment/PaymentForm'
 import ShippingForm from './Shipping Details/ShippingForm'
+import ConfirmationPage from './Confirmation/ComfirmationPage'
 
 function CheckoutForm() {
   const [nextPage, setNextPage] = useState(1)
@@ -33,6 +34,7 @@ function CheckoutForm() {
         {nextPage === 3 && (
           <PaymentForm nextPage={nextPage} setNextPage={setNextPage} />
         )}
+        {nextPage === 4 && <ConfirmationPage />}
       </div>
     </div>
   )

@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setBillingDetails,
   setFulfillmentData,
   setShippingDetails,
+  fetchShippingOptions,
 } from '../../../redux/Shopping/Actions/checkOutActions'
-import { fetchShippingOptions } from '../../../redux/Shopping/Actions/shoppingActions'
 
 import './ShippingForm.css'
 
 function Shipping({ nextPage, setNextPage }) {
   const dispatch = useDispatch()
-  const { shipping_subdivisions, shipping_options } = useSelector(
-    (state) => state.shop.shipping_data,
-  )
+  const {
+    shipping_helpers: { shipping_subdivisions, shipping_options },
+    fulfillment: { shipping_method },
+  } = useSelector((state) => state.checkOut)
   const [shippingInfo, setShippingInfo] = useState({
     shippingName: '',
     shippingStreet: '',
     shippingCity: '',
     shippingPostalZipCode: '',
-    shippingStateProvince: '',
-    shippingOption: { id: '' },
+    shippingStateProvince: '00',
+    shippingOption: shipping_method,
   })
 
-  const [shippingHelpers, setShippingHelpers] = useState({
-    shippingStateProvince: {},
-    shippingOptions: [],
-  })
+  useEffect(() => {
+    dispatch(fetchShippingOptions(shippingInfo.shippingStateProvince))
+  }, [shippingInfo.shippingStateProvince])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -39,16 +39,10 @@ function Shipping({ nextPage, setNextPage }) {
       shippingStreet: '',
       shippingCity: '',
       shippingPostalZipCode: '',
-      shippingStateProvince: '',
+      shippingStateProvince: '00',
+      shippingOption: shipping_method,
     })
     setNextPage(nextPage + 1)
-  }
-
-  function fetchShipping(e) {
-    e.preventDefault()
-    const { name, value } = e.target
-    setShippingHelpers({ ...shippingHelpers, [name]: value })
-    dispatch(fetchShippingOptions(value))
   }
 
   function handleFormChange(e) {
@@ -112,9 +106,9 @@ function Shipping({ nextPage, setNextPage }) {
           State/province
         </label>
         <select
-          value={shippingHelpers.shippingStateProvince}
+          value={shippingInfo.shippingStateProvince}
           name="shippingStateProvince"
-          onChange={fetchShipping}
+          onChange={handleFormChange}
           className="checkout__select"
         >
           <option className="checkout__option" disabled>
@@ -134,7 +128,7 @@ function Shipping({ nextPage, setNextPage }) {
           Shipping method
         </label>
         <select
-          value={shippingInfo.shippingOption.id}
+          value={shippingInfo.shippingOption}
           name="shippingOption"
           onChange={handleFormChange}
           className="checkout__select"
@@ -148,7 +142,7 @@ function Shipping({ nextPage, setNextPage }) {
                 className="checkout__select-option"
                 value={method.id}
                 key={index}
-              >{`${method.description} - $${method.price.formatted_with_code}`}</option>
+              >{`${method.description} - ${method.price.formatted_with_code}`}</option>
             )
           })}
           ;

@@ -121,18 +121,6 @@ export const setProducts = (value) => {
   }
 }
 
-export const setPaymentDetails = (paymentDetails) => {
-  return {
-    type: actionTypes.SET_PAYMENT_DETAILS,
-    payload: {
-      card_number: paymentDetails.cardNumber,
-      exp_month: paymentDetails.expMonth,
-      exp_year: paymentDetails.expYear,
-      ccv: paymentDetails.ccv,
-    },
-  }
-}
-
 export const getCheckoutToken = () => async (dispatch, getState) => {
   const { cart_id } = getState().shop
   console.log(cart_id)
@@ -144,50 +132,7 @@ export const getCheckoutToken = () => async (dispatch, getState) => {
         payload: token,
       })
     })
-    .then(() => dispatch(setSubdivisions()))
     .catch((error) => {
       console.log('There was an error in generating a token', error)
     })
 }
-
-export const setSubdivisions = () => (dispatch, getState) => {
-  const { shipping_country } = getState().shop.shipping_details
-  commerce.services
-    .localeListSubdivisions(shipping_country)
-    .then((subdivisions) => {
-      return dispatch({
-        type: actionTypes.SET_SUBDIVISIONS,
-        payload: subdivisions.subdivisions,
-      })
-    })
-    .catch((error) => {
-      console.log('There was an error fetching the subdivisions', error)
-    })
-}
-
-export const fetchShippingOptions =
-  (stateProvince) => async (dispatch, getState) => {
-    const {
-      checkout_token: { id },
-      shipping_details: { shipping_country },
-    } = getState().shop
-
-    await commerce.checkout
-      .getShippingOptions(id, {
-        country: shipping_country,
-        region: stateProvince,
-      })
-      .then((options) => {
-        const shippingOption = options[0] || null
-        return dispatch({
-          type: actionTypes.SET_SHIPPING_OPTIONS,
-          payload: {
-            shipping_options: options,
-            shipping_option: shippingOption,
-          },
-        })
-      })
-      .catch((error) => {
-        console.log('There was an error fetching the shipping methods', error)
-      })
-  }

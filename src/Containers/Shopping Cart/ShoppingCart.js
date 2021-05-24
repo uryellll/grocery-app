@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import classes from './shoppingCart.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,10 @@ import {
   retrieveCart,
   getCheckoutToken,
 } from '../../redux/Shopping/Actions/shoppingActions'
+import {
+  setCartCheckOutItems,
+  setSubdivisions,
+} from '../../redux/Shopping/Actions/checkOutActions'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
@@ -17,32 +21,11 @@ const ShoppingCart = () => {
     dispatch(retrieveCart())
   }, [])
 
-  // function shoppingCartList() {
-  //   if (Object.keys(cart).length !== 0) {
-  //     return cart.map((cartItem) => {
-  //       return <CartItems key={cartItem.id} cartItem={cartItem} />
-  //     })
-  //   } else {
-  //     return <b>No items in cart yet.</b>
-  //   }
-  // }
-
-  // const total = cart.reduce((currentTotal, item) => {
-  //   return item.price.raw * item.quantity + currentTotal
-  // }, 0)
-
-  // const totalQuantity = cart.reduce((currentTotal, item) => {
-  //   return item.quantity + currentTotal
-  // }, 0)
-
-  // const productList = cart.map((item) => {
-  //   return (
-  //     <div>
-  //       <p>{item.name}</p>
-  //       <p>{item.quantity}</p>
-  //     </div>
-  //   )
-  // })
+  function checkOutHandler() {
+    dispatch(setCartCheckOutItems())
+    dispatch(getCheckoutToken())
+    dispatch(setSubdivisions())
+  }
 
   if (Object.keys(cart).length === 0) {
     return (
@@ -87,7 +70,7 @@ const ShoppingCart = () => {
             <Link to="/checkout">
               <button
                 className={classes.checkouttBtn}
-                onClick={() => dispatch(getCheckoutToken())}
+                onClick={checkOutHandler}
               >
                 Checkout
               </button>
