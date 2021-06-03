@@ -1,15 +1,15 @@
 .confirmation-container {
   height: 500px;
   width: 100%;
-  border: 1px solid red;
   background: #f2f2f2;
   margin: 1rem 0;
   text-align: center;
 }
 
 .confirmation-container h1 {
+  text-transform: initial;
   font-size: 2.5rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .confirmation-container h2 {
@@ -17,5 +17,14 @@
   margin: 0.5rem 0;
 }
 
-.customer-info {
+.confirmation-logo {
+  margin: 1rem;
+  font-size: 4rem;
+  color: #75cfb8;
+}
+
+.confirmation-container button {
+  margin: 2rem 0;
+  height: 2rem;
+  width: 10rem;
 }
