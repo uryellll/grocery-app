@@ -104,7 +104,7 @@ const checkOutReducer = (state = INITIAL_STATE, action) => {
 
     case actionTypes.CLEAR_CHECKOUT:
       return {
-        ...state,
+        ...INITIAL_STATE,
       }
     case actionTypes.SET_SHIPPING_OPTIONS:
       return {
